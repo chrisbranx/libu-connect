@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #1E1B4B;
+  --color-primary-light: #312E81;
+  --color-accent: #F59E0B;
+  --color-accent-light: #FCD34D;
+  --color-success: #059669;
+  --color-danger: #DC2626;
+  --color-warning: #D97706;
+  --color-surface: #F8F7FF;
+  --color-border: #E5E4F0;
+  --color-text: #1F1D35;
+  --color-muted: #6B6880;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --shadow-sm: 0 1px 3px rgba(30,27,75,0.08);
+  --shadow-md: 0 4px 12px rgba(30,27,75,0.12);
+  --shadow-lg: 0 8px 32px rgba(30,27,75,0.16);
+}
+
+.dark {
+  --color-surface: #0F0E1A;
+  --color-border: #2A2840;
+  --color-text: #F0EFF8;
+  --color-muted: #9896B0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Satoshi', 'DM Sans', sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transition: background-color 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+
+.tiptap { outline: none; min-height: 300px; padding: 1rem; }
+.tiptap h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; font-family: 'Clash Display', sans-serif; }
+.tiptap h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; font-family: 'Clash Display', sans-serif; }
+.tiptap h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+.tiptap p { margin-bottom: 0.5rem; line-height: 1.6; }
+.tiptap ul, .tiptap ol { margin-left: 1.5rem; margin-bottom: 0.5rem; }
+.tiptap blockquote { border-left: 3px solid var(--color-accent); padding-left: 1rem; margin-left: 0; color: var(--color-muted); }
+.tiptap pre { background: #1E1B4B; color: #F0EFF8; padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
+.tiptap code { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
+
+.skeleton { animation: skeleton 1.5s ease-in-out infinite; background: linear-gradient(90deg, var(--color-border) 25%, transparent 50%, var(--color-border) 75%); background-size: 200% 100%; }
+@keyframes skeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+@media print { .no-print { display: none !important; } }

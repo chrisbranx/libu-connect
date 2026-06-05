@@ -1,0 +1,168 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  LECTURER
+  ADMIN
+}
+
+enum ActivityType {
+  ACADEMIC
+  SOCIAL
+  SPORTS
+  ANNOUNCEMENT
+  CLUB
+}
+
+enum NoteVisibility {
+  PRIVATE
+  COURSE
+  PUBLIC
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  firstName     String
+  lastName      String
+  role          Role      @default(STUDENT)
+  avatar        String?
+  department    String?
+  level         String?
+  matricule     String?   @unique
+  language      String    @default("en")
+  darkMode      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  showInDirectory Boolean @default(true)
+  showEmail     Boolean   @default(true)
+  showDepartment Boolean  @default(true)
+  showLevel     Boolean   @default(true)
+
+  schedules     Schedule[]
+  notes         Note[]
+  grades        Grade[]
+  activities    ActivityParticipant[]
+  notifications Notification[]
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Schedule {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  type        String
+  course      String?
+  lecturer    String?
+  location    String?
+  startTime   DateTime
+  endTime     DateTime
+  isRecurring Boolean   @default(false)
+  recurDays   String[]
+  color       String    @default("#1E1B4B")
+  reminder    Int?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Note {
+  id           String         @id @default(cuid())
+  userId       String
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title        String
+  content      String         @db.Text
+  course       String?
+  department   String?
+  level        String?
+  tags         String[]
+  visibility   NoteVisibility @default(PRIVATE)
+  fileUrl      String?
+  fileName     String?
+  isPinned     Boolean        @default(false)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model Grade {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course     String
+  courseCode String?
+  credits    Float
+  score      Float
+  grade      String
+  semester   String
+  year       String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Activity {
+  id           String               @id @default(cuid())
+  title        String
+  description  String               @db.Text
+  type         ActivityType
+  organizer    String
+  location     String?
+  startDate    DateTime
+  endDate      DateTime?
+  imageUrl     String?
+  isPublished  Boolean              @default(false)
+  department   String?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  participants ActivityParticipant[]
+}
+
+model ActivityParticipant {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activityId String
+  activity   Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  joinedAt   DateTime @default(now())
+
+  @@unique([userId, activityId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      String
+  isRead    Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  userId    String
+  messages  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId])
+}
