@@ -12,7 +12,7 @@ export default function Layout() {
     <div className="flex h-screen overflow-hidden bg-surface dark:bg-surface-dark">
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
       
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${sidebarOpen ? 'ml-[256px]' : 'ml-[72px]'}`}>
         <OfflineBanner />
         <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
         

@@ -24,7 +24,7 @@ const TABS = [
   { key: 'dashboard', icon: LayoutDashboard, labelKey: 'admin.dashboard' },
   { key: 'users', icon: Users, labelKey: 'admin.users' },
   { key: 'activities', icon: Calendar, labelKey: 'admin.activities' },
-  { key: 'broadcast', icon: Broadcast, labelKey: 'admin.broadcast' },
+  { key: 'broadcast', icon: Radio, labelKey: 'admin.broadcast' },
 ]
 
 const containerVariants = {
