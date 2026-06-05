@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import {
-  LayoutDashboard, Users, Calendar, Broadcast,
+  LayoutDashboard, Users, Calendar, Radio,
   Search, ChevronLeft, ChevronRight, Check, X,
   Shield, Send, Megaphone, Plus,
   Activity,
@@ -656,7 +656,7 @@ function BroadcastTab() {
       <Card>
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 rounded-md bg-primary/10 text-primary">
-            <Broadcast size={20} />
+            <Radio size={20} />
           </div>
           <div>
             <h3 className="text-base font-semibold text-text dark:text-text-dark">{t('admin.sendBroadcast')}</h3>
