@@ -12,6 +12,7 @@ const directoryRoutes = require('./routes/directory.routes');
 const userRoutes = require('./routes/user.routes');
 const aiRoutes = require('./routes/ai.routes');
 const notificationRoutes = require('./routes/notification.routes');
+const adminRoutes = require('./routes/admin.routes');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use('/api/v1/directory', directoryRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/ai', aiRoutes);
 app.use('/api/v1/notifications', notificationRoutes);
+app.use('/api/v1/admin', adminRoutes);
 
 app.get('/api/v1/health', (req, res) => res.json({ status: 'ok' }));
 

@@ -256,7 +256,7 @@ export default function AIAdvisor() {
       setError(err.message || 'Failed to get AI response')
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: `Sorry, I couldn't process your request. ${err.message || 'Please try again.'}`,
+        content: "I'm temporarily unavailable. Please try again later.",
       }])
     } finally {
       setLoading(false)

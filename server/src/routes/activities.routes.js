@@ -10,6 +10,7 @@ router.get('/:id', authenticate, activitiesController.getActivity);
 router.post('/', authenticate, authorize('ADMIN', 'LECTURER'), activitiesController.createActivity);
 router.put('/:id', authenticate, authorize('ADMIN', 'LECTURER'), activitiesController.updateActivity);
 router.delete('/:id', authenticate, authorize('ADMIN'), activitiesController.deleteActivity);
+router.put('/:id/approve', authenticate, authorize('ADMIN'), activitiesController.approveActivity);
 router.post('/:id/join', authenticate, activitiesController.joinActivity);
 router.delete('/:id/leave', authenticate, activitiesController.leaveActivity);
 

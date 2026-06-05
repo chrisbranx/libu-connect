@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: '#1E1B4B', light: '#312E81', dark: '#6C63FF' },
+        primary: { DEFAULT: 'var(--color-primary, #1E1B4B)', light: 'var(--color-primary-light, #312E81)', dark: 'var(--color-primary-dark, #6C63FF)' },
         'primary-dark': '#6C63FF',
-        accent: { DEFAULT: '#F59E0B', light: '#FCD34D' },
+        accent: { DEFAULT: 'var(--color-accent, #F59E0B)', light: 'var(--color-accent-light, #FCD34D)' },
         success: '#059669',
         danger: '#DC2626',
         warning: '#D97706',

@@ -90,4 +90,34 @@ async function updatePreferences(req, res) {
   }
 }
 
-module.exports = { getNotifications, markAsRead, markAllAsRead, deleteNotification, updatePreferences };
+async function broadcast(req, res) {
+  try {
+    const { department, message } = req.body;
+    if (!message) {
+      return res.status(400).json({ error: 'Message is required' });
+    }
+
+    const where = {};
+    if (department) {
+      where.department = department;
+    }
+
+    const users = await prisma.user.findMany({ where, select: { id: true } });
+
+    const notifications = users.map((user) => ({
+      userId: user.id,
+      title: 'Broadcast',
+      message,
+      type: 'broadcast',
+    }));
+
+    await prisma.notification.createMany({ data: notifications });
+
+    res.status(200).json({ data: { message: `Broadcast sent to ${users.length} users` } });
+  } catch (error) {
+    console.error('Broadcast error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+module.exports = { getNotifications, markAsRead, markAllAsRead, deleteNotification, updatePreferences, broadcast };

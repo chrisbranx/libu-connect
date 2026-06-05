@@ -2,9 +2,9 @@ const prisma = require('../config/db');
 
 async function getActivities(req, res) {
   try {
-    const { type, department, date } = req.query;
+    const { type, department, date, all } = req.query;
 
-    const where = { isPublished: true };
+    const where = all === 'true' && (req.user.role === 'ADMIN' || req.user.role === 'LECTURER') ? {} : { isPublished: true };
 
     if (type) {
       where.type = type;
@@ -171,6 +171,27 @@ async function deleteActivity(req, res) {
   }
 }
 
+async function approveActivity(req, res) {
+  try {
+    const { id } = req.params;
+
+    const existing = await prisma.activity.findUnique({ where: { id } });
+    if (!existing) {
+      return res.status(404).json({ error: 'Activity not found' });
+    }
+
+    const activity = await prisma.activity.update({
+      where: { id },
+      data: { isPublished: true },
+    });
+
+    res.status(200).json({ data: activity });
+  } catch (error) {
+    console.error('ApproveActivity error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 async function joinActivity(req, res) {
   try {
     const { id } = req.params;
@@ -222,4 +243,4 @@ async function leaveActivity(req, res) {
   }
 }
 
-module.exports = { getActivities, getActivity, getMyActivities, createActivity, updateActivity, deleteActivity, joinActivity, leaveActivity };
+module.exports = { getActivities, getActivity, getMyActivities, createActivity, updateActivity, deleteActivity, approveActivity, joinActivity, leaveActivity };

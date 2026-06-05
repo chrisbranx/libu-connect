@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const sizeMap = {
   sm: 32,
   md: 40,
@@ -31,12 +33,23 @@ function getInitials(name) {
 
 export default function Avatar({ src, name = '', size = 'md', className = '' }) {
   const px = sizeMap[size]
+  const [imgError, setImgError] = useState(false)
 
-  if (src) {
+  if (src === undefined || src === null) {
+    return (
+      <div
+        className={`rounded-full bg-gray-300 dark:bg-gray-600 animate-pulse ${className}`}
+        style={{ width: px, height: px, minWidth: px }}
+      />
+    )
+  }
+
+  if (src && !imgError) {
     return (
       <img
         src={src}
         alt={name}
+        onError={() => setImgError(true)}
         className={`rounded-full object-cover ${className}`}
         style={{ width: px, height: px, minWidth: px }}
       />

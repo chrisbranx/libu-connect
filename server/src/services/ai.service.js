@@ -1,8 +1,15 @@
 const Anthropic = require('@anthropic-ai/sdk');
 
-const anthropic = new Anthropic({
-  apiKey: process.env.CLAUDE_API_KEY,
-});
+let anthropic = null;
+try {
+  if (process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY) {
+    anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY,
+    });
+  }
+} catch (e) {
+  console.warn('AI service not available:', e.message);
+}
 
 function buildSystemPrompt(context) {
   const { user, schedule, grades, notes, activities } = context || {};
@@ -40,6 +47,10 @@ Guidelines:
 }
 
 async function getAIAdvisorResponse({ messages, context }) {
+  if (!anthropic) {
+    return "I'm sorry, the AI advisor service is currently unavailable. Please configure the ANTHROPIC_API_KEY in your environment settings.";
+  }
+
   const systemPrompt = buildSystemPrompt(context);
 
   const response = await anthropic.messages.create({
