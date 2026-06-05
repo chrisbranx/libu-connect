@@ -78,7 +78,7 @@ function AttendeeAvatars({ attendees = [], count }) {
           </div>
         ))}
       </div>
-      <span className="text-xs text-muted">
+      <span className="text-xs text-gray-500">
         {count || attendees.length} {(count || attendees.length) <= 1 ? 'attendee' : 'attendees'}
         {remainder > 0 && ` +${remainder}`}
       </span>
@@ -126,22 +126,22 @@ function ActivityCard({ activity, onJoin, onLeave, onClick, joining }) {
                 {t(FILTERS.find(f => f.key === activity.type)?.labelKey || activity.type)}
               </div>
             </Badge>
-            <span className="text-xs text-muted shrink-0">
+            <span className="text-xs text-gray-500 shrink-0">
               {dateStr}
             </span>
           </div>
 
-          <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1.5 line-clamp-1">
+          <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1.5 line-clamp-1">
             {activity.title}
           </h3>
 
           {activity.description && (
-            <p className="text-sm text-muted line-clamp-2 mb-3">
+            <p className="text-sm text-gray-500 line-clamp-2 mb-3">
               {activity.description.replace(/<[^>]*>/g, '').slice(0, 150)}
             </p>
           )}
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted mb-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-gray-500 mb-4">
             {timeStr && (
               <span className="flex items-center gap-1">
                 <Clock size={13} />
@@ -229,16 +229,16 @@ function ActivityDetailModal({ activity, isOpen, onClose, onJoin, onLeave, joini
           </div>
         </Badge>
 
-        <p className="text-sm text-text dark:text-text-dark leading-relaxed whitespace-pre-wrap">
+        <p className="text-sm text-gray-900 dark:text-gray-100 leading-relaxed whitespace-pre-wrap">
           {activity.description || 'No description provided.'}
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-lg bg-surface dark:bg-primary-dark/50">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50">
           <div className="flex items-start gap-3">
             <Calendar size={16} className="text-primary dark:text-accent mt-0.5 shrink-0" />
             <div>
-              <p className="text-xs text-muted">{t('activities.startDate')}</p>
-              <p className="text-sm font-medium text-text dark:text-text-dark">
+              <p className="text-xs text-gray-500">{t('activities.startDate')}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
                 {dateStr}{timeStr ? ` at ${timeStr}` : ''}
               </p>
             </div>
@@ -248,8 +248,8 @@ function ActivityDetailModal({ activity, isOpen, onClose, onJoin, onLeave, joini
             <div className="flex items-start gap-3">
               <Calendar size={16} className="text-primary dark:text-accent mt-0.5 shrink-0" />
               <div>
-                <p className="text-xs text-muted">{t('activities.endDate')}</p>
-                <p className="text-sm font-medium text-text dark:text-text-dark">{endDateStr}</p>
+                <p className="text-xs text-gray-500">{t('activities.endDate')}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{endDateStr}</p>
               </div>
             </div>
           )}
@@ -258,8 +258,8 @@ function ActivityDetailModal({ activity, isOpen, onClose, onJoin, onLeave, joini
             <div className="flex items-start gap-3">
               <MapPin size={16} className="text-primary dark:text-accent mt-0.5 shrink-0" />
               <div>
-                <p className="text-xs text-muted">{t('activities.location')}</p>
-                <p className="text-sm font-medium text-text dark:text-text-dark">{activity.location}</p>
+                <p className="text-xs text-gray-500">{t('activities.location')}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{activity.location}</p>
               </div>
             </div>
           )}
@@ -267,8 +267,8 @@ function ActivityDetailModal({ activity, isOpen, onClose, onJoin, onLeave, joini
           <div className="flex items-start gap-3">
             <User size={16} className="text-primary dark:text-accent mt-0.5 shrink-0" />
             <div>
-              <p className="text-xs text-muted">{t('activities.organizer')}</p>
-              <p className="text-sm font-medium text-text dark:text-text-dark">
+              <p className="text-xs text-gray-500">{t('activities.organizer')}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
                 {activity.organizer || 'Unknown'}
               </p>
             </div>
@@ -277,7 +277,7 @@ function ActivityDetailModal({ activity, isOpen, onClose, onJoin, onLeave, joini
 
         <div>
           <div className="flex items-center justify-between mb-3">
-            <h4 className="text-sm font-semibold text-text dark:text-text-dark">
+            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
               {t('activities.attendees')} ({activity.attendeeCount || activity.attendees?.length || 0})
             </h4>
             {user && (
@@ -298,20 +298,20 @@ function ActivityDetailModal({ activity, isOpen, onClose, onJoin, onLeave, joini
           {activity.attendees && activity.attendees.length > 0 ? (
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {activity.attendees.map((att, i) => (
-                <div key={att.id || i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-border/30 dark:hover:bg-border-dark/20 transition-colors">
+                <div key={att.id || i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100/30 dark:hover:bg-gray-800/20 transition-colors">
                   <Avatar
                     src={att.avatar}
                     name={`${att.firstName || ''} ${att.lastName || ''}`.trim()}
                     size="sm"
                   />
-                  <span className="text-sm text-text dark:text-text-dark">
+                  <span className="text-sm text-gray-900 dark:text-gray-100">
                     {`${att.firstName || ''} ${att.lastName || ''}`.trim() || 'Unknown'}
                   </span>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-sm text-muted">No attendees yet.</p>
+            <p className="text-sm text-gray-500">No attendees yet.</p>
           )}
         </div>
       </div>
@@ -414,14 +414,14 @@ function CreateActivityForm({ isOpen, onClose, onSubmit }) {
         />
 
         <div>
-          <label className="block text-sm font-medium text-text dark:text-text-dark mb-1">
+          <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">
             {t('activities.description')}
           </label>
           <textarea
             value={form.description}
             onChange={handleChange('description')}
             rows={3}
-            className="w-full rounded-md border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2 text-sm resize-none"
+            className="w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2 text-sm resize-none"
             placeholder="Describe the activity..."
           />
         </div>
@@ -475,11 +475,11 @@ function CreateActivityForm({ isOpen, onClose, onSubmit }) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-text dark:text-text-dark mb-1">
+          <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">
             Image
           </label>
           <div className="flex items-center gap-3">
-            <label className="flex items-center gap-2 px-4 py-2 rounded-md border border-border dark:border-border-dark bg-white dark:bg-primary-dark cursor-pointer hover:bg-border/30 dark:hover:bg-border-dark/20 transition-colors text-sm text-text dark:text-text-dark">
+            <label className="flex items-center gap-2 px-4 py-2 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 cursor-pointer hover:bg-gray-100/30 dark:hover:bg-gray-800/20 transition-colors text-sm text-gray-900 dark:text-gray-100">
               <ImageIcon size={16} />
               Choose Image
               <input
@@ -500,13 +500,13 @@ function CreateActivityForm({ isOpen, onClose, onSubmit }) {
             )}
           </div>
           {imagePreview && (
-            <div className="mt-2 w-32 h-20 rounded-md overflow-hidden border border-border dark:border-border-dark">
+            <div className="mt-2 w-32 h-20 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700">
               <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
             </div>
           )}
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-2 border-t border-border dark:border-border-dark">
+        <div className="flex items-center justify-end gap-3 pt-2 border-t border-gray-200 dark:border-gray-700">
           <Button variant="ghost" onClick={handleClose} type="button">
             {t('activities.cancel')}
           </Button>
@@ -647,13 +647,13 @@ export default function Activities() {
     >
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-          <div className="flex rounded-md border border-border dark:border-border-dark overflow-hidden">
+          <div className="flex rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
             <button
               onClick={() => setActiveTab('all')}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'all'
                   ? 'bg-primary text-white'
-                  : 'bg-white dark:bg-primary-dark text-text dark:text-text-dark hover:bg-border/30 dark:hover:bg-border-dark/30'
+                  : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-100/30 dark:hover:bg-gray-800/30'
               }`}
             >
               {t('activities.allActivities')}
@@ -663,7 +663,7 @@ export default function Activities() {
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'my'
                   ? 'bg-primary text-white'
-                  : 'bg-white dark:bg-primary-dark text-text dark:text-text-dark hover:bg-border/30 dark:hover:bg-border-dark/30'
+                  : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-100/30 dark:hover:bg-gray-800/30'
               }`}
             >
               {t('activities.myActivities')}
@@ -671,13 +671,13 @@ export default function Activities() {
           </div>
 
           <div className="relative flex-1 max-w-sm">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={`${t('common.search')}...`}
-              className="w-full pl-9 pr-3 py-2 text-sm rounded-md border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+              className="w-full pl-9 pr-3 py-2 text-sm rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
             />
           </div>
         </div>
@@ -693,7 +693,7 @@ export default function Activities() {
                   className={`flex items-center gap-1.5 px-3.5 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors shrink-0 ${
                     isActive
                       ? 'bg-primary text-white shadow-sm'
-                      : 'bg-white dark:bg-primary-dark border border-border dark:border-border-dark text-text dark:text-text-dark hover:bg-border/30 dark:hover:bg-border-dark/30'
+                      : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-100/30 dark:hover:bg-gray-800/30'
                   }`}
                 >
                   {filter.icon && <filter.icon size={15} />}

@@ -34,7 +34,7 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-surface dark:bg-primary-dark">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-50 dark:bg-gray-900">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 dark:bg-primary-light/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/5 dark:bg-accent/10 rounded-full blur-3xl" />
@@ -46,7 +46,7 @@ export default function ForgotPassword() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="relative z-10 w-full max-w-md mx-4"
       >
-        <div className="bg-white dark:bg-primary-dark rounded-xl shadow-lg p-8 sm:p-10 border border-border dark:border-border-dark">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 sm:p-10 border border-gray-200 dark:border-gray-700">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -56,7 +56,7 @@ export default function ForgotPassword() {
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary text-white mb-4">
               <GraduationCap size={28} />
             </div>
-            <h1 className="text-2xl font-display font-bold text-text dark:text-text-dark">
+            <h1 className="text-2xl font-display font-bold text-gray-900 dark:text-gray-100">
               {t('auth.forgotPassword')}
             </h1>
           </motion.div>
@@ -73,10 +73,10 @@ export default function ForgotPassword() {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-success/10 text-success mb-4">
                   <CheckCircle2 size={32} />
                 </div>
-                <p className="text-text dark:text-text-dark font-medium">
+                <p className="text-gray-900 dark:text-gray-100 font-medium">
                   Check your email for reset link
                 </p>
-                <p className="text-sm text-muted mt-2">
+                <p className="text-sm text-gray-500 mt-2">
                   We've sent instructions to reset your password.
                 </p>
                 <Link
@@ -96,16 +96,16 @@ export default function ForgotPassword() {
                 onSubmit={handleSubmit(onSubmit)}
                 className="space-y-5"
               >
-                <p className="text-sm text-muted text-center">
+                <p className="text-sm text-gray-500 text-center">
                   Enter your email address and we'll send you a link to reset your password.
                 </p>
 
                 <div>
-                  <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+                  <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                     {t('auth.email')}
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
                       <Mail size={16} />
                     </div>
                     <input
@@ -113,7 +113,7 @@ export default function ForgotPassword() {
                       type="email"
                       autoComplete="email"
                       placeholder="you@university.edu"
-                      className={`w-full rounded-md border ${errors.email ? 'border-danger' : 'border-border dark:border-border-dark'} bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-3 py-2.5 text-sm`}
+                      className={`w-full rounded-md border ${errors.email ? 'border-danger' : 'border-gray-200 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-3 py-2.5 text-sm`}
                     />
                   </div>
                   {errors.email && (
@@ -136,7 +136,7 @@ export default function ForgotPassword() {
           <div className="mt-6 text-center">
             <Link
               to="/login"
-              className="inline-flex items-center gap-2 text-sm text-muted hover:text-text dark:hover:text-text-dark transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
             >
               <ArrowLeft size={16} />
               Back to Login

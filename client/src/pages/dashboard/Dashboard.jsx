@@ -76,7 +76,7 @@ function ScheduleWidget() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <CalendarCheck size={18} className="text-primary dark:text-accent" />
-          <h3 className="font-display font-semibold text-text dark:text-text-dark">
+          <h3 className="font-display font-semibold text-gray-900 dark:text-gray-100">
             {t('dashboard.todaySchedule')}
           </h3>
         </div>
@@ -107,23 +107,23 @@ function ScheduleWidget() {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.05 }}
-              className="flex items-start gap-3 p-3 rounded-lg bg-surface dark:bg-primary-dark/50 hover:bg-border/30 dark:hover:bg-border-dark/20 transition-colors"
+              className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50 hover:bg-gray-100/30 dark:hover:bg-gray-800/20 transition-colors"
             >
               <div className="shrink-0 w-14 text-right">
-                <p className="text-xs font-semibold text-text dark:text-text-dark">
+                <p className="text-xs font-semibold text-gray-900 dark:text-gray-100">
                   {item.startTime
                     ? new Date(item.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                     : '--:--'}
                 </p>
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-text dark:text-text-dark truncate">
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                   {item.title}
                 </p>
                 <div className="flex items-center gap-2 mt-1">
                   {typeBadge(item.type)}
                   {item.location && (
-                    <span className="flex items-center gap-1 text-xs text-muted">
+                    <span className="flex items-center gap-1 text-xs text-gray-500">
                       <MapPin size={12} />
                       {item.location}
                     </span>
@@ -151,7 +151,7 @@ function GpaWidget() {
 
   const gpaColor =
     gpa === null
-      ? 'text-muted'
+      ? 'text-gray-500'
       : gpa >= 3.5
         ? 'text-success'
         : gpa >= 2.5
@@ -162,7 +162,7 @@ function GpaWidget() {
     <Card className="h-full">
       <div className="flex items-center gap-2 mb-4">
         <GraduationCap size={18} className="text-primary dark:text-accent" />
-        <h3 className="font-display font-semibold text-text dark:text-text-dark">
+        <h3 className="font-display font-semibold text-gray-900 dark:text-gray-100">
           {t('dashboard.currentGpa')}
         </h3>
       </div>
@@ -177,9 +177,9 @@ function GpaWidget() {
             <span className={`text-4xl font-display font-bold ${gpaColor} transition-colors`}>
               {gpa.toFixed(2)}
             </span>
-            <span className="text-sm text-muted">/ 4.0</span>
+            <span className="text-sm text-gray-500">/ 4.0</span>
           </div>
-          <p className="text-sm text-muted mt-1">
+          <p className="text-sm text-gray-500 mt-1">
             {t('academic.totalCredits')}: {credits ?? 0}
           </p>
         </>
@@ -211,7 +211,7 @@ function UpcomingEventsWidget() {
     <Card className="h-full">
       <div className="flex items-center gap-2 mb-4">
         <CalendarDays size={18} className="text-primary dark:text-accent" />
-        <h3 className="font-display font-semibold text-text dark:text-text-dark">
+        <h3 className="font-display font-semibold text-gray-900 dark:text-gray-100">
           {t('dashboard.upcomingEvents')}
         </h3>
       </div>
@@ -225,23 +225,23 @@ function UpcomingEventsWidget() {
         <div className="space-y-4">
           {entries.map(([date, items]) => (
             <div key={date}>
-              <p className="text-xs font-semibold text-muted uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                 {new Date(date).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}
               </p>
               <div className="space-y-2">
                 {items.slice(0, 3).map((item, idx) => (
                   <div
                     key={item.id || idx}
-                    className="flex items-center gap-3 p-2.5 rounded-lg bg-surface dark:bg-primary-dark/50"
+                    className="flex items-center gap-3 p-2.5 rounded-lg bg-gray-50 dark:bg-gray-900/50"
                   >
                     <div className="shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent">
                       <CalendarDays size={16} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-text dark:text-text-dark truncate">
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                         {item.title}
                       </p>
-                      <div className="flex items-center gap-1.5 mt-0.5 text-xs text-muted">
+                      <div className="flex items-center gap-1.5 mt-0.5 text-xs text-gray-500">
                         <Clock size={12} />
                         {item.startTime
                           ? new Date(item.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -275,7 +275,7 @@ function RecentNotesWidget() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <FileText size={18} className="text-primary dark:text-accent" />
-          <h3 className="font-display font-semibold text-text dark:text-text-dark">
+          <h3 className="font-display font-semibold text-gray-900 dark:text-gray-100">
             {t('dashboard.recentNotes')}
           </h3>
         </div>
@@ -301,12 +301,12 @@ function RecentNotesWidget() {
               key={note.id || idx}
               whileHover={{ y: -2 }}
               onClick={() => navigate(`/notes/${note.id}`)}
-              className="text-left p-4 rounded-lg bg-surface dark:bg-primary-dark/50 border border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-accent/30 transition-all"
+              className="text-left p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 hover:border-primary/30 dark:hover:border-accent/30 transition-all"
             >
-              <p className="text-sm font-semibold text-text dark:text-text-dark truncate">
+              <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">
                 {note.title || 'Untitled'}
               </p>
-              <p className="text-xs text-muted mt-1.5 line-clamp-2">
+              <p className="text-xs text-gray-500 mt-1.5 line-clamp-2">
                 {note.content
                   ? note.content.replace(/<[^>]*>/g, '').slice(0, 100)
                   : 'No content'}
@@ -322,7 +322,7 @@ function RecentNotesWidget() {
                     </span>
                   ))}
                 </div>
-                <span className="text-[10px] text-muted">
+                <span className="text-[10px] text-gray-500">
                   {note.createdAt
                     ? new Date(note.createdAt).toLocaleDateString()
                     : ''}
@@ -350,7 +350,7 @@ function QuickActionsWidget() {
     <Card className="h-full">
       <div className="flex items-center gap-2 mb-4">
         <Zap size={18} className="text-primary dark:text-accent" />
-        <h3 className="font-display font-semibold text-text dark:text-text-dark">
+        <h3 className="font-display font-semibold text-gray-900 dark:text-gray-100">
           Quick Actions
         </h3>
       </div>
@@ -361,12 +361,12 @@ function QuickActionsWidget() {
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigate(action.path)}
-            className="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-surface dark:bg-primary-dark/50 border border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-accent/30 transition-all"
+            className="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 hover:border-primary/30 dark:hover:border-accent/30 transition-all"
           >
             <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${action.bg}`}>
               <action.icon size={20} className={action.color} />
             </div>
-            <span className="text-xs font-medium text-text dark:text-text-dark text-center leading-tight">
+            <span className="text-xs font-medium text-gray-900 dark:text-gray-100 text-center leading-tight">
               {action.label}
             </span>
           </motion.button>
@@ -403,7 +403,7 @@ function UpcomingActivitiesWidget() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <CalendarDays size={18} className="text-primary dark:text-accent" />
-          <h3 className="font-display font-semibold text-text dark:text-text-dark">
+          <h3 className="font-display font-semibold text-gray-900 dark:text-gray-100">
             Upcoming Activities
           </h3>
         </div>
@@ -431,18 +431,18 @@ function UpcomingActivitiesWidget() {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.04 }}
-              className="flex items-center gap-4 p-3 rounded-lg bg-surface dark:bg-primary-dark/50 hover:bg-border/30 dark:hover:bg-border-dark/20 transition-colors cursor-pointer"
+              className="flex items-center gap-4 p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50 hover:bg-gray-100/30 dark:hover:bg-gray-800/20 transition-colors cursor-pointer"
               onClick={() => navigate(`/activities`)}
             >
               <div className={`shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${typeIcon(activity.type)}`}>
                 <CalendarDays size={18} />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-text dark:text-text-dark truncate">
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                   {activity.title}
                 </p>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-xs text-muted">
+                  <span className="text-xs text-gray-500">
                     {activity.startDate
                       ? new Date(activity.startDate).toLocaleDateString(undefined, {
                           month: 'short',
@@ -452,8 +452,8 @@ function UpcomingActivitiesWidget() {
                   </span>
                   {activity.location && (
                     <>
-                      <span className="text-muted text-xs">•</span>
-                      <span className="flex items-center gap-1 text-xs text-muted">
+                      <span className="text-gray-500 text-xs">•</span>
+                      <span className="flex items-center gap-1 text-xs text-gray-500">
                         <MapPin size={11} />
                         {activity.location}
                       </span>
@@ -490,11 +490,11 @@ function AnnouncementsBar() {
           {announcements.map((a, idx) => (
             <div
               key={idx}
-              className="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-md bg-surface dark:bg-primary-dark/50 text-sm text-text dark:text-text-dark whitespace-nowrap"
+              className="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-md bg-gray-50 dark:bg-gray-900/50 text-sm text-gray-900 dark:text-gray-100 whitespace-nowrap"
             >
               <span className={`w-1.5 h-1.5 rounded-full ${a.type === 'event' ? 'bg-warning' : 'bg-primary'}`} />
               <span className="font-medium">{a.title}</span>
-              <span className="text-xs text-muted">{a.date}</span>
+              <span className="text-xs text-gray-500">{a.date}</span>
             </div>
           ))}
         </div>
@@ -521,7 +521,7 @@ function SchoolAdminWidget() {
     <Card className="h-full">
       <div className="flex items-center gap-2 mb-4">
         <Shield size={18} className="text-primary dark:text-accent" />
-        <h3 className="font-display font-semibold text-text dark:text-text-dark">School Administration</h3>
+        <h3 className="font-display font-semibold text-gray-900 dark:text-gray-100">School Administration</h3>
       </div>
       <div className="space-y-1">
         {adminStaff.map((member, idx) => {
@@ -529,14 +529,14 @@ function SchoolAdminWidget() {
           return (
             <div
               key={idx}
-              className="flex items-center gap-3 p-2.5 rounded-lg bg-surface dark:bg-primary-dark/50 hover:bg-border/30 dark:hover:bg-border-dark/20 transition-colors"
+              className="flex items-center gap-3 p-2.5 rounded-lg bg-gray-50 dark:bg-gray-900/50 hover:bg-gray-100/30 dark:hover:bg-gray-800/20 transition-colors"
             >
               <div className="shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent">
                 {Icon && <Icon size={15} />}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-text dark:text-text-dark truncate">{member.name}</p>
-                <p className="text-xs text-muted truncate">{member.role}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{member.name}</p>
+                <p className="text-xs text-gray-500 truncate">{member.role}</p>
               </div>
             </div>
           )
@@ -564,7 +564,7 @@ function SugMembersWidget() {
     <Card className="h-full">
       <div className="flex items-center gap-2 mb-4">
         <Crown size={18} className="text-primary dark:text-accent" />
-        <h3 className="font-display font-semibold text-text dark:text-text-dark">SUG Members</h3>
+        <h3 className="font-display font-semibold text-gray-900 dark:text-gray-100">SUG Members</h3>
       </div>
       <div className="space-y-1">
         {sugMembers.map((member, idx) => {
@@ -572,14 +572,14 @@ function SugMembersWidget() {
           return (
             <div
               key={idx}
-              className="flex items-center gap-3 p-2.5 rounded-lg bg-surface dark:bg-primary-dark/50 hover:bg-border/30 dark:hover:bg-border-dark/20 transition-colors"
+              className="flex items-center gap-3 p-2.5 rounded-lg bg-gray-50 dark:bg-gray-900/50 hover:bg-gray-100/30 dark:hover:bg-gray-800/20 transition-colors"
             >
               <div className="shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-warning/10 text-warning">
                 {Icon && <Icon size={15} />}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-text dark:text-text-dark truncate">{member.name}</p>
-                <p className="text-xs text-muted truncate">{member.role}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{member.name}</p>
+                <p className="text-xs text-gray-500 truncate">{member.role}</p>
               </div>
             </div>
           )
@@ -601,10 +601,10 @@ export default function Dashboard() {
         transition={{ duration: 0.4 }}
         className="mb-6"
       >
-        <h1 className="text-xl lg:text-2xl font-display font-bold text-text dark:text-text-dark">
+        <h1 className="text-xl lg:text-2xl font-display font-bold text-gray-900 dark:text-gray-100">
           {t('dashboard.welcome')}, {user?.firstName || 'User'} <Sun className="inline-block" />
         </h1>
-        <p className="text-sm text-muted mt-1">
+        <p className="text-sm text-gray-500 mt-1">
           {new Date().toLocaleDateString(undefined, {
             weekday: 'long',
             year: 'numeric',

@@ -4,8 +4,8 @@
   "description": "Your campus, connected.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1E1B4B",
-  "theme_color": "#1E1B4B",
+  "background_color": "#FFFFFF",
+  "theme_color": "#2563EB",
   "orientation": "portrait-primary",
   "categories": ["education", "productivity"],
   "icons": [

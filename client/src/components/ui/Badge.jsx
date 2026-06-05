@@ -1,5 +1,5 @@
 const variantStyles = {
-  default: 'bg-border text-text dark:bg-border-dark dark:text-text-dark',
+  default: 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100',
   success: 'bg-success/10 text-success',
   warning: 'bg-warning/10 text-warning',
   danger: 'bg-danger/10 text-danger',

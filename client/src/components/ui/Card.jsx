@@ -8,7 +8,7 @@ export default function Card({ children, className = '', hover = false }) {
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.3 }}
       className={`
-        bg-white dark:bg-primary-dark rounded-md shadow-sm p-6
+        bg-white dark:bg-gray-800 rounded-md shadow-sm p-6
         ${hover ? 'hover:shadow-md transition-shadow' : ''}
         ${className}
       `}

@@ -14,7 +14,7 @@ export default function MobileNav() {
   const { t } = useTranslation();
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-30 h-16 bg-white dark:bg-primary-dark border-t border-border dark:border-border-dark flex items-center justify-around pb-safe">
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-30 h-16 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 flex items-center justify-around pb-safe">
       {items.map((item) => (
         <NavLink
           key={item.to}
@@ -23,7 +23,7 @@ export default function MobileNav() {
             `flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-md transition-colors text-[11px] font-medium ${
               isActive
                 ? 'text-accent'
-                : 'text-text-muted dark:text-text-dark'
+                : 'text-gray-500 dark:text-gray-100'
             }`
           }
         >

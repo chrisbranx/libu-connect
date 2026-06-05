@@ -9,7 +9,7 @@ export default function Skeleton({ variant = 'text', width, height, className = 
   const elements = Array.from({ length: count }, (_, i) => (
     <div
       key={i}
-      className={`animate-pulse bg-border dark:bg-border-dark ${variantStyles[variant]} ${className}`}
+      className={`animate-pulse bg-gray-100 dark:bg-gray-800 ${variantStyles[variant]} ${className}`}
       style={{ width, height }}
     />
   ))

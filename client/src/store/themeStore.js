@@ -1,10 +1,9 @@
 import { create } from 'zustand';
-import { api } from '../services/api';
 
 const useThemeStore = create((set) => ({
   darkMode: localStorage.getItem('darkMode') === 'true',
   language: localStorage.getItem('language') || 'en',
-  themeColor: localStorage.getItem('themeColor') || 'indigo',
+  themeColor: localStorage.getItem('themeColor') || 'default',
 
   toggleDarkMode: () => set((state) => {
     const newMode = !state.darkMode;
@@ -22,13 +21,13 @@ const useThemeStore = create((set) => ({
   setThemeColor: (color) => {
     localStorage.setItem('themeColor', color);
     const themeColors = {
-      indigo: { primary: '#1E1B4B', accent: '#F59E0B' },
+      default: { primary: '#2563EB', accent: '#F59E0B' },
       emerald: { primary: '#059669', accent: '#34D399' },
       violet: { primary: '#7C3AED', accent: '#A78BFA' },
       rose: { primary: '#E11D48', accent: '#FB7185' },
       amber: { primary: '#D97706', accent: '#FBBF24' },
     };
-    const colors = themeColors[color] || themeColors.indigo;
+    const colors = themeColors[color] || themeColors.default;
     const root = document.documentElement;
     root.style.setProperty('--color-primary', colors.primary);
     root.style.setProperty('--color-primary-dark', colors.primary);
@@ -39,16 +38,17 @@ const useThemeStore = create((set) => ({
   initTheme: () => {
     const dark = localStorage.getItem('darkMode') === 'true';
     const lang = localStorage.getItem('language') || 'en';
-    const color = localStorage.getItem('themeColor') || 'indigo';
+    const color = localStorage.getItem('themeColor') || 'default';
     if (dark) document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
     const themeColors = {
-      indigo: { primary: '#1E1B4B', accent: '#F59E0B' },
+      default: { primary: '#2563EB', accent: '#F59E0B' },
       emerald: { primary: '#059669', accent: '#34D399' },
       violet: { primary: '#7C3AED', accent: '#A78BFA' },
       rose: { primary: '#E11D48', accent: '#FB7185' },
       amber: { primary: '#D97706', accent: '#FBBF24' },
     };
-    const colors = themeColors[color] || themeColors.indigo;
+    const colors = themeColors[color] || themeColors.default;
     const root = document.documentElement;
     root.style.setProperty('--color-primary', colors.primary);
     root.style.setProperty('--color-primary-dark', colors.primary);

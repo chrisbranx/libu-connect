@@ -60,8 +60,8 @@ function StatCard({ icon: Icon, label, value, color }) {
             <Icon size={22} className="text-white" />
           </div>
           <div>
-            <p className="text-xs text-muted font-medium uppercase tracking-wider">{label}</p>
-            <p className="text-2xl font-display font-bold text-text dark:text-text-dark mt-0.5">{value}</p>
+            <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">{label}</p>
+            <p className="text-2xl font-display font-bold text-gray-900 dark:text-gray-100 mt-0.5">{value}</p>
           </div>
         </div>
       </Card>
@@ -220,13 +220,13 @@ function UsersTab() {
       </AnimatePresence>
 
       <div className="relative max-w-sm">
-        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={`${t('common.search')} users...`}
-          className="w-full pl-9 pr-3 py-2 text-sm rounded-md border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+          className="w-full pl-9 pr-3 py-2 text-sm rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
         />
       </div>
 
@@ -245,13 +245,13 @@ function UsersTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border dark:border-border-dark bg-surface dark:bg-primary-dark/50">
-                  <th className="text-left px-4 py-3 font-semibold text-text dark:text-text-dark">Name</th>
-                  <th className="text-left px-4 py-3 font-semibold text-text dark:text-text-dark">Email</th>
-                  <th className="text-left px-4 py-3 font-semibold text-text dark:text-text-dark">Role</th>
-                  <th className="text-left px-4 py-3 font-semibold text-text dark:text-text-dark">Department</th>
-                  <th className="text-left px-4 py-3 font-semibold text-text dark:text-text-dark">Status</th>
-                  <th className="text-right px-4 py-3 font-semibold text-text dark:text-text-dark">Actions</th>
+                <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
+                  <th className="text-left px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">Name</th>
+                  <th className="text-left px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">Email</th>
+                  <th className="text-left px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">Role</th>
+                  <th className="text-left px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">Department</th>
+                  <th className="text-left px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">Status</th>
+                  <th className="text-right px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -259,7 +259,7 @@ function UsersTab() {
                   const isExpanded = expandedUserId === u.id
                   return (
                     <tr key={u.id}>
-                      <td className="px-4 py-3 border-b border-border dark:border-border-dark">
+                      <td className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                         <button
                           onClick={() => setExpandedUserId(isExpanded ? null : u.id)}
                           className="flex items-center gap-3 hover:opacity-80 transition-opacity"
@@ -269,23 +269,23 @@ function UsersTab() {
                             name={`${u.firstName || ''} ${u.lastName || ''}`}
                             size="sm"
                           />
-                          <span className="font-medium text-text dark:text-text-dark">
+                          <span className="font-medium text-gray-900 dark:text-gray-100">
                             {u.firstName || ''} {u.lastName || ''}
                           </span>
                         </button>
                       </td>
-                      <td className="px-4 py-3 border-b border-border dark:border-border-dark text-muted text-xs">
+                      <td className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 text-gray-500 text-xs">
                         {u.email}
                       </td>
-                      <td className="px-4 py-3 border-b border-border dark:border-border-dark">
+                      <td className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                         <Badge variant={ROLE_BADGE_VARIANT[u.role] || 'default'}>
                           {u.role}
                         </Badge>
                       </td>
-                      <td className="px-4 py-3 border-b border-border dark:border-border-dark text-muted text-xs">
+                      <td className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 text-gray-500 text-xs">
                         {u.department || '-'}
                       </td>
-                      <td className="px-4 py-3 border-b border-border dark:border-border-dark">
+                      <td className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                         <span
                           className={`inline-flex items-center gap-1 text-xs font-medium ${
                             u.status === 'active'
@@ -301,12 +301,12 @@ function UsersTab() {
                           {u.status === 'active' ? 'Active' : 'Deactivated'}
                         </span>
                       </td>
-                      <td className="px-4 py-3 border-b border-border dark:border-border-dark text-right">
+                      <td className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 text-right">
                         <div className="flex items-center justify-end gap-2">
                           <select
                             value={u.role}
                             onChange={(e) => handleRoleChange(u.id, e.target.value)}
-                            className="px-2 py-1 text-xs rounded border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark focus:outline-none focus:ring-1 focus:ring-primary/30"
+                            className="px-2 py-1 text-xs rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-primary/30"
                           >
                             {ROLE_OPTIONS.map((opt) => (
                               <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -333,21 +333,21 @@ function UsersTab() {
 
       {totalPages > 1 && (
         <div className="flex items-center justify-between">
-          <p className="text-xs text-muted">
+          <p className="text-xs text-gray-500">
             Page {page} of {totalPages} ({filtered.length} users)
           </p>
           <div className="flex items-center gap-2">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page <= 1}
-              className="p-1.5 rounded-md border border-border dark:border-border-dark text-muted hover:text-text dark:hover:text-text-dark disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="p-1.5 rounded-md border border-gray-200 dark:border-gray-700 text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronLeft size={16} />
             </button>
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page >= totalPages}
-              className="p-1.5 rounded-md border border-border dark:border-border-dark text-muted hover:text-text dark:hover:text-text-dark disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="p-1.5 rounded-md border border-gray-200 dark:border-gray-700 text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronRight size={16} />
             </button>
@@ -460,15 +460,15 @@ function ActivitiesTab() {
                       <Badge variant="warning">Pending Approval</Badge>
                     )}
                   </div>
-                  <h4 className="text-sm font-semibold text-text dark:text-text-dark mt-1">
+                  <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mt-1">
                     {activity.title}
                   </h4>
                   {activity.description && (
-                    <p className="text-xs text-muted mt-1 line-clamp-2">
+                    <p className="text-xs text-gray-500 mt-1 line-clamp-2">
                       {activity.description.replace(/<[^>]*>/g, '').slice(0, 200)}
                     </p>
                   )}
-                  <div className="flex items-center gap-3 mt-2 text-xs text-muted">
+                  <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
                     {activity.organizer && (
                       <span>By {activity.organizer}</span>
                     )}
@@ -563,12 +563,12 @@ function CreateAnnouncementModal({ isOpen, onClose, onCreated }) {
           required
         />
         <div>
-          <label className="block text-sm font-medium text-text dark:text-text-dark mb-1">Description</label>
+          <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">Description</label>
           <textarea
             value={form.description}
             onChange={handleChange('description')}
             rows={4}
-            className="w-full rounded-md border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2 text-sm resize-none"
+            className="w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2 text-sm resize-none"
             placeholder="Describe the announcement..."
           />
         </div>
@@ -578,7 +578,7 @@ function CreateAnnouncementModal({ isOpen, onClose, onCreated }) {
           onChange={handleChange('department')}
           placeholder="Leave empty for all departments"
         />
-        <div className="flex justify-end gap-3 pt-2 border-t border-border dark:border-border-dark">
+        <div className="flex justify-end gap-3 pt-2 border-t border-gray-200 dark:border-gray-700">
           <Button variant="ghost" onClick={onClose} type="button">Cancel</Button>
           <Button type="submit" loading={submitting} icon={Megaphone}>
             Publish Announcement
@@ -659,8 +659,8 @@ function BroadcastTab() {
             <Radio size={20} />
           </div>
           <div>
-            <h3 className="text-base font-semibold text-text dark:text-text-dark">{t('admin.sendBroadcast')}</h3>
-            <p className="text-xs text-muted">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">{t('admin.sendBroadcast')}</h3>
+            <p className="text-xs text-gray-500">
               Send a notification to all users in a department or everyone.
             </p>
           </div>
@@ -679,7 +679,7 @@ function BroadcastTab() {
           )}
 
           <div>
-            <label className="block text-sm font-medium text-text dark:text-text-dark mb-1">
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">
               {t('admin.message')}
             </label>
             <textarea
@@ -687,11 +687,11 @@ function BroadcastTab() {
               onChange={handleChange('message')}
               rows={5}
               placeholder="Type your broadcast message..."
-              className="w-full rounded-md border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2 text-sm resize-none"
+              className="w-full rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2 text-sm resize-none"
             />
           </div>
 
-          <div className="flex justify-end pt-2 border-t border-border dark:border-border-dark">
+          <div className="flex justify-end pt-2 border-t border-gray-200 dark:border-gray-700">
             <Button
               onClick={handleSend}
               loading={sending}
@@ -730,8 +730,8 @@ export default function AdminPanel() {
             <div className="p-3 rounded-full bg-danger/10 text-danger mb-4">
               <Shield size={32} />
             </div>
-            <h2 className="text-lg font-semibold text-text dark:text-text-dark mb-2">Access Denied</h2>
-            <p className="text-sm text-muted max-w-sm">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Access Denied</h2>
+            <p className="text-sm text-gray-500 max-w-sm">
               You do not have the required permissions to access this page. Only administrators can view the admin panel.
             </p>
           </div>
@@ -754,7 +754,7 @@ export default function AdminPanel() {
                   className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-md text-sm font-medium whitespace-nowrap transition-all shrink-0 ${
                     isActive
                       ? 'bg-primary text-white shadow-sm'
-                      : 'text-muted hover:text-text dark:hover:text-text-dark hover:bg-border/30 dark:hover:bg-border-dark/30'
+                      : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100/30 dark:hover:bg-gray-800/30'
                   }`}
                 >
                   <tab.icon size={16} />

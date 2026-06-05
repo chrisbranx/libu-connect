@@ -6,16 +6,22 @@ import MobileNav from './MobileNav';
 import OfflineBanner from './OfflineBanner';
 
 export default function Layout() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarExpanded, setSidebarExpanded] = useState(true);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-surface dark:bg-surface-dark">
-      <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-      
-      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${sidebarOpen ? 'ml-[256px]' : 'ml-[72px]'}`}>
+    <div className="flex h-screen overflow-hidden bg-white dark:bg-gray-950">
+      <Sidebar
+        isOpen={sidebarExpanded}
+        mobileOpen={mobileSidebarOpen}
+        onToggle={() => setSidebarExpanded(!sidebarExpanded)}
+        onMobileClose={() => setMobileSidebarOpen(false)}
+      />
+
+      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${sidebarExpanded ? 'lg:ml-[256px]' : 'lg:ml-[72px]'}`}>
         <OfflineBanner />
-        <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
-        
+        <Header onMenuClick={() => setMobileSidebarOpen(true)} />
+
         <main className="flex-1 overflow-y-auto pb-20 lg:pb-6">
           <Outlet />
         </main>

@@ -83,7 +83,7 @@ function Toggle({ enabled, onChange, label }) {
       aria-checked={enabled}
       onClick={() => onChange(!enabled)}
       className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30 ${
-        enabled ? 'bg-primary' : 'bg-border dark:bg-border-dark'
+        enabled ? 'bg-primary' : 'bg-gray-100 dark:bg-gray-800'
       }`}
     >
       <span
@@ -175,17 +175,17 @@ function ProfileSection() {
             />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-text dark:text-text-dark">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
               {user?.firstName || ''} {user?.lastName || ''}
             </h3>
-            <p className="text-sm text-muted">{user?.email}</p>
-            <p className="text-xs text-muted mt-0.5 capitalize">{user?.role?.toLowerCase()}</p>
+            <p className="text-sm text-gray-500">{user?.email}</p>
+            <p className="text-xs text-gray-500 mt-0.5 capitalize">{user?.role?.toLowerCase()}</p>
           </div>
         </div>
       </Card>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-4">{t('settings.editProfile')}</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">{t('settings.editProfile')}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
           <Input label={t('auth.firstName')} value={form.firstName} onChange={handleChange('firstName')} />
           <Input label={t('auth.lastName')} value={form.lastName} onChange={handleChange('lastName')} />
@@ -268,15 +268,15 @@ function AccountSection() {
       </AnimatePresence>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1">Email Address</h3>
-        <p className="text-sm text-muted mb-3">Your email address is verified and cannot be changed here.</p>
-        <div className="p-3 rounded-md bg-surface dark:bg-primary-dark/50 border border-border dark:border-border-dark">
-          <p className="text-sm font-medium text-text dark:text-text-dark">{user?.email}</p>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Email Address</h3>
+        <p className="text-sm text-gray-500 mb-3">Your email address is verified and cannot be changed here.</p>
+        <div className="p-3 rounded-md bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700">
+          <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{user?.email}</p>
         </div>
       </Card>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-4">{t('settings.changePassword')}</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">{t('settings.changePassword')}</h3>
         <div className="space-y-4 mb-6">
           <div className="relative">
             <Input
@@ -288,7 +288,7 @@ function AccountSection() {
             <button
               type="button"
               onClick={toggleShow('current')}
-              className="absolute right-3 top-[38px] text-muted hover:text-text dark:hover:text-text-dark transition-colors"
+              className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
             >
               {showPasswords.current ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
@@ -303,7 +303,7 @@ function AccountSection() {
             <button
               type="button"
               onClick={toggleShow('new')}
-              className="absolute right-3 top-[38px] text-muted hover:text-text dark:hover:text-text-dark transition-colors"
+              className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
             >
               {showPasswords.new ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
@@ -318,7 +318,7 @@ function AccountSection() {
             <button
               type="button"
               onClick={toggleShow('confirm')}
-              className="absolute right-3 top-[38px] text-muted hover:text-text dark:hover:text-text-dark transition-colors"
+              className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
             >
               {showPasswords.confirm ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
@@ -339,7 +339,7 @@ function AccountSection() {
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="text-base font-semibold text-danger mb-1">{t('settings.deleteAccount')}</h3>
-            <p className="text-sm text-muted mb-4">
+            <p className="text-sm text-gray-500 mb-4">
               Permanently delete your account and all associated data. This action cannot be undone.
             </p>
             <Button variant="danger" onClick={() => setShowDeleteModal(true)} icon={Trash2}>
@@ -355,10 +355,10 @@ function AccountSection() {
             <AlertTriangle size={20} />
             <p className="text-sm font-medium">This action is permanent and cannot be reversed.</p>
           </div>
-          <p className="text-sm text-muted">
+          <p className="text-sm text-gray-500">
             All your data including notes, grades, schedule, and activities will be permanently deleted.
           </p>
-          <div className="flex justify-end gap-3 pt-2 border-t border-border dark:border-border-dark">
+          <div className="flex justify-end gap-3 pt-2 border-t border-gray-200 dark:border-gray-700">
             <Button variant="ghost" onClick={() => setShowDeleteModal(false)}>Cancel</Button>
             <Button variant="danger" onClick={handleDeleteAccount} loading={deleting} icon={Trash2}>
               Delete Forever
@@ -393,15 +393,15 @@ function AppearanceSection() {
   return (
     <motion.div variants={itemVariants} className="space-y-6">
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-4">{t('settings.darkMode')}</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">{t('settings.darkMode')}</h3>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {darkMode ? <Moon size={20} className="text-primary" /> : <Sun size={20} className="text-warning" />}
             <div>
-              <p className="text-sm font-medium text-text dark:text-text-dark">
+              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
                 {darkMode ? 'Dark Mode' : 'Light Mode'}
               </p>
-              <p className="text-xs text-muted">
+              <p className="text-xs text-gray-500">
                 {darkMode ? 'Using dark theme' : 'Using light theme'}
               </p>
             </div>
@@ -411,7 +411,7 @@ function AppearanceSection() {
       </Card>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-4">Color Theme</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">Color Theme</h3>
         <div className="flex flex-wrap gap-3">
           {colorThemes.map((theme) => (
             <button
@@ -433,7 +433,7 @@ function AppearanceSection() {
       </Card>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-4">{t('settings.language')}</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">{t('settings.language')}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <button
             type="button"
@@ -442,13 +442,13 @@ function AppearanceSection() {
             className={`flex items-center gap-4 p-4 rounded-md border-2 transition-all ${
               i18n.language === 'en'
                 ? 'border-primary bg-primary/5 dark:bg-primary/10'
-                : 'border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-accent/30'
+                : 'border-gray-200 dark:border-gray-700 hover:border-primary/30 dark:hover:border-accent/30'
             }`}
           >
             <Languages className="text-2xl" />
             <div className="text-left">
-              <p className="text-sm font-semibold text-text dark:text-text-dark">{t('settings.english')}</p>
-              <p className="text-xs text-muted">English</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">{t('settings.english')}</p>
+              <p className="text-xs text-gray-500">English</p>
             </div>
             {i18n.language === 'en' && (
               <div className="ml-auto p-1 rounded-full bg-primary text-white">
@@ -463,13 +463,13 @@ function AppearanceSection() {
             className={`flex items-center gap-4 p-4 rounded-md border-2 transition-all ${
               i18n.language === 'fr'
                 ? 'border-primary bg-primary/5 dark:bg-primary/10'
-                : 'border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-accent/30'
+                : 'border-gray-200 dark:border-gray-700 hover:border-primary/30 dark:hover:border-accent/30'
             }`}
           >
             <Globe className="text-2xl" />
             <div className="text-left">
-              <p className="text-sm font-semibold text-text dark:text-text-dark">{t('settings.french')}</p>
-              <p className="text-xs text-muted">Français</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">{t('settings.french')}</p>
+              <p className="text-xs text-gray-500">Français</p>
             </div>
             {i18n.language === 'fr' && (
               <div className="ml-auto p-1 rounded-full bg-primary text-white">
@@ -481,19 +481,19 @@ function AppearanceSection() {
       </Card>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-2">Preview</h3>
-        <div className="p-4 rounded-md bg-surface dark:bg-primary-dark/50 border border-border dark:border-border-dark">
-          <p className="text-sm text-text dark:text-text-dark font-medium mb-1">
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">Preview</h3>
+        <div className="p-4 rounded-md bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700">
+          <p className="text-sm text-gray-900 dark:text-gray-100 font-medium mb-1">
             {t('dashboard.welcome')}, {useAuthStore.getState().user?.firstName || 'User'}!
           </p>
-          <p className="text-xs text-muted">
+          <p className="text-xs text-gray-500">
             {t('dashboard.todaySchedule')} &middot; {t('academic.currentGpa')} &middot; {t('notes.myNotes')}
           </p>
           <div className="mt-2 flex gap-2">
             <span className="text-[10px] px-2 py-0.5 rounded bg-primary/10 text-primary dark:text-accent">
               {t('common.save')}
             </span>
-            <span className="text-[10px] px-2 py-0.5 rounded bg-border dark:bg-border-dark text-muted">
+            <span className="text-[10px] px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-500">
               {t('common.cancel')}
             </span>
           </div>
@@ -534,22 +534,22 @@ function NotificationsSection() {
       </AnimatePresence>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-4">{t('settings.notificationPreferences')}</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">{t('settings.notificationPreferences')}</h3>
         <div className="space-y-1">
           {NOTIFICATION_SETTINGS.map((setting) => (
             <div
               key={setting.key}
-              className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-surface dark:hover:bg-primary-dark/50 transition-colors"
+              className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
             >
               <div>
-                <p className="text-sm font-medium text-text dark:text-text-dark">{setting.label}</p>
-                <p className="text-xs text-muted mt-0.5">{setting.desc}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{setting.label}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{setting.desc}</p>
               </div>
               <Toggle enabled={preferences[setting.key]} onChange={handleToggle(setting.key)} />
             </div>
           ))}
         </div>
-        <div className="flex justify-end pt-4 mt-2 border-t border-border dark:border-border-dark">
+        <div className="flex justify-end pt-4 mt-2 border-t border-gray-200 dark:border-gray-700">
           <Button onClick={handleSave} loading={saving} icon={Save}>{t('common.save')}</Button>
         </div>
       </Card>
@@ -588,25 +588,25 @@ function PrivacySection() {
       </AnimatePresence>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-4">Privacy Settings</h3>
-        <p className="text-sm text-muted mb-4">
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">Privacy Settings</h3>
+        <p className="text-sm text-gray-500 mb-4">
           Control how your information is shared across the campus directory and your profile.
         </p>
         <div className="space-y-1">
           {PRIVACY_SETTINGS.map((setting) => (
             <div
               key={setting.key}
-              className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-surface dark:hover:bg-primary-dark/50 transition-colors"
+              className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
             >
               <div>
-                <p className="text-sm font-medium text-text dark:text-text-dark">{setting.label}</p>
-                <p className="text-xs text-muted mt-0.5">{setting.desc}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{setting.label}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{setting.desc}</p>
               </div>
               <Toggle enabled={preferences[setting.key]} onChange={handleToggle(setting.key)} />
             </div>
           ))}
         </div>
-        <div className="flex justify-end pt-4 mt-2 border-t border-border dark:border-border-dark">
+        <div className="flex justify-end pt-4 mt-2 border-t border-gray-200 dark:border-gray-700">
           <Button onClick={handleSave} loading={saving} icon={Save}>{t('common.save')}</Button>
         </div>
       </Card>
@@ -639,8 +639,8 @@ function AcademicSection() {
       </AnimatePresence>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1">GPA Scale Preference</h3>
-        <p className="text-sm text-muted mb-4">
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">GPA Scale Preference</h3>
+        <p className="text-sm text-gray-500 mb-4">
           Choose how your GPA is calculated and displayed across the platform.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
@@ -650,18 +650,18 @@ function AcademicSection() {
             className={`p-4 rounded-md border-2 text-left transition-all ${
               gpaScale === '4.0'
                 ? 'border-primary bg-primary/5 dark:bg-primary/10'
-                : 'border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-accent/30'
+                : 'border-gray-200 dark:border-gray-700 hover:border-primary/30 dark:hover:border-accent/30'
             }`}
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="text-lg font-bold text-text dark:text-text-dark">4.0 Scale</span>
+              <span className="text-lg font-bold text-gray-900 dark:text-gray-100">4.0 Scale</span>
               {gpaScale === '4.0' && (
                 <div className="p-1 rounded-full bg-primary text-white">
                   <Check size={14} />
                 </div>
               )}
             </div>
-            <p className="text-xs text-muted leading-relaxed">
+            <p className="text-xs text-gray-500 leading-relaxed">
               Standard 4.0 GPA scale (A = 4.0, B = 3.0, C = 2.0, D = 1.0, F = 0.0)
             </p>
           </button>
@@ -671,18 +671,18 @@ function AcademicSection() {
             className={`p-4 rounded-md border-2 text-left transition-all ${
               gpaScale === '20'
                 ? 'border-primary bg-primary/5 dark:bg-primary/10'
-                : 'border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-accent/30'
+                : 'border-gray-200 dark:border-gray-700 hover:border-primary/30 dark:hover:border-accent/30'
             }`}
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="text-lg font-bold text-text dark:text-text-dark">20-Point Scale</span>
+              <span className="text-lg font-bold text-gray-900 dark:text-gray-100">20-Point Scale</span>
               {gpaScale === '20' && (
                 <div className="p-1 rounded-full bg-primary text-white">
                   <Check size={14} />
                 </div>
               )}
             </div>
-            <p className="text-xs text-muted leading-relaxed">
+            <p className="text-xs text-gray-500 leading-relaxed">
               Cameroonian 20-point grading system (16-20 = A, 14-15.9 = B, 12-13.9 = C, 10-11.9 = D, &lt;10 = F)
             </p>
           </button>
@@ -757,8 +757,8 @@ function DataSection() {
       </AnimatePresence>
 
       <Card>
-        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1">Export Data</h3>
-        <p className="text-sm text-muted mb-4">
+        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Export Data</h3>
+        <p className="text-sm text-gray-500 mb-4">
           Download all your data including profile, notes, grades, schedule, and activities as a JSON file.
         </p>
         <Button onClick={handleExport} loading={exporting} icon={Download}>{t('settings.exportData')}</Button>
@@ -770,8 +770,8 @@ function DataSection() {
             <Trash2 size={20} />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1">{t('settings.clearNotes')}</h3>
-            <p className="text-sm text-muted mb-4">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">{t('settings.clearNotes')}</h3>
+            <p className="text-sm text-gray-500 mb-4">
               Permanently delete all your notes. This action cannot be undone.
             </p>
             <Button variant="outline" onClick={() => setShowClearNotesModal(true)} icon={Trash2}>
@@ -787,8 +787,8 @@ function DataSection() {
             <Trash2 size={20} />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1">{t('settings.clearGrades')}</h3>
-            <p className="text-sm text-muted mb-4">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">{t('settings.clearGrades')}</h3>
+            <p className="text-sm text-gray-500 mb-4">
               Permanently delete all your grades and GPA data. This action cannot be undone.
             </p>
             <Button variant="outline" onClick={() => setShowClearGradesModal(true)} icon={Trash2}>
@@ -804,8 +804,8 @@ function DataSection() {
             <AlertTriangle size={20} />
             <p className="text-sm font-medium">This will permanently delete {notes.length} note{notes.length !== 1 ? 's' : ''}.</p>
           </div>
-          <p className="text-sm text-muted">This action cannot be undone. All your notes will be permanently removed.</p>
-          <div className="flex justify-end gap-3 pt-2 border-t border-border dark:border-border-dark">
+          <p className="text-sm text-gray-500">This action cannot be undone. All your notes will be permanently removed.</p>
+          <div className="flex justify-end gap-3 pt-2 border-t border-gray-200 dark:border-gray-700">
             <Button variant="ghost" onClick={() => setShowClearNotesModal(false)}>Cancel</Button>
             <Button variant="danger" onClick={handleClearNotes} loading={clearingNotes} icon={Trash2}>
               Delete All Notes
@@ -820,8 +820,8 @@ function DataSection() {
             <AlertTriangle size={20} />
             <p className="text-sm font-medium">This will permanently delete all your grades.</p>
           </div>
-          <p className="text-sm text-muted">This action cannot be undone. Your GPA and all grade records will be permanently removed.</p>
-          <div className="flex justify-end gap-3 pt-2 border-t border-border dark:border-border-dark">
+          <p className="text-sm text-gray-500">This action cannot be undone. Your GPA and all grade records will be permanently removed.</p>
+          <div className="flex justify-end gap-3 pt-2 border-t border-gray-200 dark:border-gray-700">
             <Button variant="ghost" onClick={() => setShowClearGradesModal(false)}>Cancel</Button>
             <Button variant="danger" onClick={handleClearGrades} icon={Trash2}>
               Delete All Grades
@@ -863,7 +863,7 @@ export default function Settings() {
                   className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-md text-sm font-medium whitespace-nowrap transition-all shrink-0 ${
                     isActive
                       ? 'bg-primary text-white shadow-sm'
-                      : 'text-muted hover:text-text dark:hover:text-text-dark hover:bg-border/30 dark:hover:bg-border-dark/30'
+                      : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100/30 dark:hover:bg-gray-800/30'
                   }`}
                 >
                   <tab.icon size={16} />

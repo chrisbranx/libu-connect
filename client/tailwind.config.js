@@ -4,19 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: 'var(--color-primary, #1E1B4B)', light: 'var(--color-primary-light, #312E81)', dark: 'var(--color-primary-dark, #6C63FF)' },
-        'primary-dark': '#6C63FF',
+        primary: { DEFAULT: 'var(--color-primary, #2563EB)', light: 'var(--color-primary, #2563EB)', dark: 'var(--color-primary-dark, #1D4ED8)' },
         accent: { DEFAULT: 'var(--color-accent, #F59E0B)', light: 'var(--color-accent-light, #FCD34D)' },
-        success: '#059669',
-        danger: '#DC2626',
-        warning: '#D97706',
-        surface: { DEFAULT: '#F8F7FF', dark: '#1A1A2E' },
-        'surface-dark': '#1A1A2E',
-        border: { DEFAULT: '#E5E4F0', dark: '#2D2B45' },
-        'border-dark': '#2D2B45',
-        text: { DEFAULT: '#1F1D35', muted: '#6B6880', dark: '#E8E6F0' },
-        'text-dark': '#E8E6F0',
-        'bg-dark': '#0F0F1A',
       },
       fontFamily: {
         display: ['"Clash Display"', 'sans-serif'],
@@ -25,11 +14,6 @@ export default {
       },
       borderRadius: {
         sm: '6px', md: '12px', lg: '20px', xl: '28px',
-      },
-      boxShadow: {
-        sm: '0 1px 3px rgba(30,27,75,0.08)',
-        md: '0 4px 12px rgba(30,27,75,0.12)',
-        lg: '0 8px 32px rgba(30,27,75,0.16)',
       },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-out',

@@ -49,7 +49,7 @@ function TiptapToolbar({ editor }) {
     <button
       type="button"
       onClick={onClick}
-      className={`p-1.5 rounded text-xs font-medium transition-colors ${active ? 'bg-primary/10 dark:bg-primary/30 text-primary dark:text-accent' : 'text-text dark:text-text-dark hover:bg-border dark:hover:bg-border-dark'}`}
+      className={`p-1.5 rounded text-xs font-medium transition-colors ${active ? 'bg-primary/10 dark:bg-primary/30 text-primary dark:text-accent' : 'text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
       title={label}
     >
       {label === 'B' && <span className="font-bold">B</span>}
@@ -63,11 +63,11 @@ function TiptapToolbar({ editor }) {
   )
 
   return (
-    <div className="flex items-center gap-1 p-2 border-b border-border dark:border-border-dark bg-surface dark:bg-primary-dark/30 rounded-t-md flex-wrap">
+    <div className="flex items-center gap-1 p-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/30 rounded-t-md flex-wrap">
       {btn(editor.isActive('bold'), () => editor.chain().focus().toggleBold().run(), 'B')}
       {btn(editor.isActive('italic'), () => editor.chain().focus().toggleItalic().run(), 'I')}
       {btn(editor.isActive('heading', { level: 2 }), () => editor.chain().focus().toggleHeading({ level: 2 }).run(), 'H')}
-      <span className="w-px h-4 bg-border dark:bg-border-dark mx-1" />
+      <span className="w-px h-4 bg-gray-100 dark:bg-gray-100-dark mx-1" />
       {btn(editor.isActive('bulletList'), () => editor.chain().focus().toggleBulletList().run(), 'UL')}
       {btn(editor.isActive('orderedList'), () => editor.chain().focus().toggleOrderedList().run(), 'OL')}
       {btn(editor.isActive('blockquote'), () => editor.chain().focus().toggleBlockquote().run(), 'Q')}
@@ -147,21 +147,21 @@ function CreateNoteModal({ isOpen, onClose }) {
         />
 
         <div>
-          <label className="block text-sm font-medium text-text dark:text-text-dark mb-1">{t('notes.content')}</label>
-          <div className="border border-border dark:border-border-dark rounded-md overflow-hidden">
+          <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">{t('notes.content')}</label>
+          <div className="border border-gray-200 dark:border-gray-700 rounded-md overflow-hidden">
             <TiptapToolbar editor={editor} />
             <EditorContent editor={editor} className="min-h-[250px]" />
           </div>
         </div>
 
         <div>
-          <label className="flex items-center gap-2 text-sm text-text dark:text-text-dark cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-gray-900 dark:text-gray-100 cursor-pointer">
             <Paperclip size={14} />
             <span>{t('notes.attachFile')}</span>
             <input type="file" onChange={(e) => setFile(e.target.files[0])} className="hidden" />
           </label>
           {file && (
-            <div className="flex items-center gap-2 mt-2 text-xs text-muted bg-surface dark:bg-primary-dark/50 px-3 py-2 rounded-md">
+            <div className="flex items-center gap-2 mt-2 text-xs text-gray-500 bg-gray-50 dark:bg-gray-900/50 px-3 py-2 rounded-md">
               <FileText size={14} />
               {file.name}
               <button type="button" onClick={() => setFile(null)} className="ml-auto text-danger hover:text-danger/70">
@@ -171,7 +171,7 @@ function CreateNoteModal({ isOpen, onClose }) {
           )}
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-border dark:border-border-dark">
+        <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
           <Button variant="ghost" onClick={onClose} type="button">{t('notes.cancel')}</Button>
           <Button type="submit" loading={isSubmitting} icon={Plus}>{t('notes.save')}</Button>
         </div>
@@ -204,26 +204,26 @@ function NoteCard({ note, viewMode, onPin, onDelete }) {
     return (
       <motion.div
         variants={cardVariants}
-        className="flex items-center gap-4 p-4 rounded-lg bg-white dark:bg-primary-dark border border-border dark:border-border-dark hover:shadow-sm hover:border-primary/20 dark:hover:border-accent/20 transition-all cursor-pointer group"
+        className="flex items-center gap-4 p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-sm hover:border-primary/20 dark:hover:border-accent/20 transition-all cursor-pointer group"
         onClick={() => navigate(`/notes/${note.id}`)}
       >
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <h4 className="text-sm font-semibold text-text dark:text-text-dark truncate">{note.title || 'Untitled'}</h4>
+            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">{note.title || 'Untitled'}</h4>
             {note.pinned && <Pin size={12} className="text-accent fill-accent" />}
           </div>
-          <p className="text-xs text-muted mt-1 line-clamp-1">{excerpt}</p>
+          <p className="text-xs text-gray-500 mt-1 line-clamp-1">{excerpt}</p>
           <div className="flex items-center gap-2 mt-2">
             {note.course && <Badge variant="info">{note.course}</Badge>}
             <vis.icon size={12} className={vis.className} />
-            <span className="text-[10px] text-muted">{createdDate}</span>
+            <span className="text-[10px] text-gray-500">{createdDate}</span>
           </div>
         </div>
         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button onClick={(e) => { e.stopPropagation(); onPin(note) }} className="p-1.5 rounded-md hover:bg-border dark:hover:bg-border-dark text-muted transition-colors">
+          <button onClick={(e) => { e.stopPropagation(); onPin(note) }} className="p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 transition-colors">
             {note.pinned ? <PinOff size={14} className="text-accent" /> : <Pin size={14} />}
           </button>
-          <button onClick={(e) => { e.stopPropagation(); onDelete(note) }} className="p-1.5 rounded-md hover:bg-border dark:hover:bg-border-dark text-muted hover:text-danger transition-colors">
+          <button onClick={(e) => { e.stopPropagation(); onDelete(note) }} className="p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 hover:text-danger transition-colors">
             <Trash2 size={14} />
           </button>
         </div>
@@ -235,27 +235,27 @@ function NoteCard({ note, viewMode, onPin, onDelete }) {
     <motion.div
       variants={cardVariants}
       whileHover={{ y: -3 }}
-      className="group relative bg-white dark:bg-primary-dark rounded-md border border-border dark:border-border-dark shadow-sm hover:shadow-md transition-all cursor-pointer overflow-hidden"
+      className="group relative bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all cursor-pointer overflow-hidden"
       onClick={() => navigate(`/notes/${note.id}`)}
     >
       <div className="p-4">
         <div className="flex items-start justify-between gap-2 mb-2">
-          <h4 className="text-sm font-semibold text-text dark:text-text-dark leading-snug line-clamp-2 flex-1">
+          <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 leading-snug line-clamp-2 flex-1">
             {note.title || 'Untitled'}
           </h4>
           {note.pinned && <Pin size={14} className="text-accent fill-accent shrink-0 mt-0.5" />}
         </div>
-        <p className="text-xs text-muted leading-relaxed line-clamp-3 mb-3">{excerpt || 'No content'}</p>
+        <p className="text-xs text-gray-500 leading-relaxed line-clamp-3 mb-3">{excerpt || 'No content'}</p>
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-3">
             {tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded bg-border/50 dark:bg-border-dark/50 text-muted">
+              <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded bg-gray-100/50 dark:bg-gray-100-dark/50 text-gray-500">
                 {tag}
               </span>
             ))}
           </div>
         )}
-        <div className="flex items-center gap-2 text-[10px] text-muted">
+        <div className="flex items-center gap-2 text-[10px] text-gray-500">
           {note.course && <Badge variant="info">{note.course}</Badge>}
           <vis.icon size={12} className={vis.className} />
           <span>{createdDate}</span>
@@ -265,13 +265,13 @@ function NoteCard({ note, viewMode, onPin, onDelete }) {
       <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
         <button
           onClick={(e) => { e.stopPropagation(); onPin(note) }}
-          className="p-1.5 rounded-md bg-white dark:bg-primary-dark border border-border dark:border-border-dark shadow-sm text-muted hover:text-accent transition-colors"
+          className="p-1.5 rounded-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 hover:text-accent transition-colors"
         >
           {note.pinned ? <PinOff size={12} /> : <Pin size={12} />}
         </button>
         <button
           onClick={(e) => { e.stopPropagation(); onDelete(note) }}
-          className="p-1.5 rounded-md bg-white dark:bg-primary-dark border border-border dark:border-border-dark shadow-sm text-muted hover:text-danger transition-colors"
+          className="p-1.5 rounded-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 hover:text-danger transition-colors"
         >
           <Trash2 size={12} />
         </button>
@@ -285,7 +285,7 @@ function NoteSkeleton({ viewMode }) {
     return (
       <div className="space-y-3">
         {Array.from({ length: 5 }, (_, i) => (
-          <div key={i} className="flex items-center gap-4 p-4 rounded-lg bg-white dark:bg-primary-dark border border-border dark:border-border-dark">
+          <div key={i} className="flex items-center gap-4 p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
             <div className="flex-1 space-y-2">
               <Skeleton variant="text" className="h-4 w-1/3" />
               <Skeleton variant="text" className="h-3 w-2/3" />
@@ -300,7 +300,7 @@ function NoteSkeleton({ viewMode }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {Array.from({ length: 6 }, (_, i) => (
-        <div key={i} className="p-4 rounded-md bg-white dark:bg-primary-dark border border-border dark:border-border-dark space-y-3">
+        <div key={i} className="p-4 rounded-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 space-y-3">
           <Skeleton variant="text" className="h-5 w-3/4" />
           <Skeleton variant="text" className="h-3 w-full" count={3} />
           <div className="flex gap-2">
@@ -382,27 +382,27 @@ export default function Notes() {
     <PageWrapper title={t('notes.myNotes')}>
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
         <div className="relative flex-1 max-w-md w-full">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('notes.search')}
-            className="w-full pl-10 pr-4 py-2 rounded-md border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+            className="w-full pl-10 pr-4 py-2 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
           />
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="flex rounded-md border border-border dark:border-border-dark overflow-hidden">
+          <div className="flex rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-2 transition-colors ${viewMode === 'grid' ? 'bg-primary text-white' : 'text-muted hover:bg-border/30'}`}
+              className={`p-2 transition-colors ${viewMode === 'grid' ? 'bg-primary text-white' : 'text-gray-500 hover:bg-gray-100/30'}`}
             >
               <Grid3x3 size={16} />
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`p-2 transition-colors ${viewMode === 'list' ? 'bg-primary text-white' : 'text-muted hover:bg-border/30'}`}
+              className={`p-2 transition-colors ${viewMode === 'list' ? 'bg-primary text-white' : 'text-gray-500 hover:bg-gray-100/30'}`}
             >
               <List size={16} />
             </button>
@@ -412,7 +412,7 @@ export default function Notes() {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 mb-5 pb-4 border-b border-border dark:border-border-dark">
+      <div className="flex flex-wrap items-center gap-2 mb-5 pb-4 border-b border-gray-200 dark:border-gray-700">
         {[
           { key: 'all', label: t('notes.allNotes') },
           { key: 'pinned', label: t('notes.pinned') },
@@ -424,19 +424,19 @@ export default function Notes() {
             className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
               activeFilter === f.key
                 ? 'bg-primary text-white dark:bg-accent dark:text-black'
-                : 'text-muted hover:bg-border/30 dark:hover:bg-border-dark/30'
+                : 'text-gray-500 hover:bg-gray-100/30 dark:hover:bg-gray-800/30'
             }`}
           >
             {f.label}
           </button>
         ))}
 
-        <span className="w-px h-5 bg-border dark:bg-border-dark mx-2" />
+        <span className="w-px h-5 bg-gray-100 dark:bg-gray-100-dark mx-2" />
 
         <select
           value={courseFilter}
           onChange={(e) => setCourseFilter(e.target.value)}
-          className="px-3 py-1.5 rounded-md text-xs font-medium border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark focus:outline-none"
+          className="px-3 py-1.5 rounded-md text-xs font-medium border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none"
         >
           <option value="">All Courses</option>
           {allCourses.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -445,7 +445,7 @@ export default function Notes() {
         <select
           value={tagFilter}
           onChange={(e) => setTagFilter(e.target.value)}
-          className="px-3 py-1.5 rounded-md text-xs font-medium border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark focus:outline-none"
+          className="px-3 py-1.5 rounded-md text-xs font-medium border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none"
         >
           <option value="">All Tags</option>
           {allTags.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -454,7 +454,7 @@ export default function Notes() {
         <select
           value={visibilityFilter}
           onChange={(e) => setVisibilityFilter(e.target.value)}
-          className="px-3 py-1.5 rounded-md text-xs font-medium border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark focus:outline-none"
+          className="px-3 py-1.5 rounded-md text-xs font-medium border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none"
         >
           <option value="">All Visibility</option>
           <option value="private">Private</option>

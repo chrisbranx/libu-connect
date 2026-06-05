@@ -66,14 +66,14 @@ const ITEM_VARIANTS = {
 
 function SummaryCard({ icon: Icon, label, value, sub, trend, color }) {
   return (
-    <motion.div variants={ITEM_VARIANTS} className="bg-white dark:bg-primary-dark rounded-md border border-border dark:border-border-dark shadow-sm p-5">
+    <motion.div variants={ITEM_VARIANTS} className="bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm p-5">
       <div className="flex items-start justify-between">
         <div className="min-w-0">
-          <p className="text-xs font-medium text-muted uppercase tracking-wider mb-1">{label}</p>
-          <p className={`text-2xl lg:text-3xl font-display font-bold ${color || 'text-text dark:text-text-dark'} truncate`}>
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">{label}</p>
+          <p className={`text-2xl lg:text-3xl font-display font-bold ${color || 'text-gray-900 dark:text-gray-100'} truncate`}>
             {value}
           </p>
-          {sub && <p className="text-xs text-muted mt-1">{sub}</p>}
+          {sub && <p className="text-xs text-gray-500 mt-1">{sub}</p>}
         </div>
         <div className={`shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${trend !== undefined ? (trend >= 0 ? 'bg-success/10' : 'bg-danger/10') : 'bg-primary/10 dark:bg-accent/10'}`}>
           {trend !== undefined ? (
@@ -129,14 +129,14 @@ function AddGradeForm({ isOpen, onClose, editItem, onSubmit }) {
           <Input label={t('academic.credits')} type="number" {...register('credits')} error={errors.credits?.message} />
           <Input label={t('academic.score')} type="number" {...register('score')} error={errors.score?.message} placeholder="0-100" />
           <div>
-            <label className="block text-sm font-medium text-text dark:text-text-dark mb-1">Grade</label>
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">Grade</label>
             {gradePreview ? (
-              <div className={`h-[38px] flex items-center gap-2 px-3 rounded-md border border-border dark:border-border-dark ${gradePreview.bg}`}>
+              <div className={`h-[38px] flex items-center gap-2 px-3 rounded-md border border-gray-200 dark:border-gray-700 ${gradePreview.bg}`}>
                 <span className={`text-lg font-bold ${gradePreview.color}`}>{gradePreview.letter}</span>
-                <span className="text-xs text-muted">{currentScore}%</span>
+                <span className="text-xs text-gray-500">{currentScore}%</span>
               </div>
             ) : (
-              <div className="h-[38px] flex items-center px-3 rounded-md border border-border dark:border-border-dark text-sm text-muted">
+              <div className="h-[38px] flex items-center px-3 rounded-md border border-gray-200 dark:border-gray-700 text-sm text-gray-500">
                 Enter score
               </div>
             )}
@@ -148,7 +148,7 @@ function AddGradeForm({ isOpen, onClose, editItem, onSubmit }) {
           <Input label="Year" type="number" {...register('year')} error={errors.year?.message} />
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-border dark:border-border-dark">
+        <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
           <Button variant="ghost" onClick={onClose} type="button">{t('academic.cancel')}</Button>
           <Button type="submit" loading={isSubmitting} icon={Plus}>
             {isEdit ? t('common.save') : t('academic.save')}
@@ -188,16 +188,16 @@ function GPACalculator({ allGrades, scale }) {
     <Card>
       <div className="flex items-center gap-2 mb-4">
         <Calculator size={18} className="text-primary dark:text-accent" />
-        <h3 className="text-sm font-semibold text-text dark:text-text-dark">{t('academic.gpaSimulator')}</h3>
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{t('academic.gpaSimulator')}</h3>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-4 p-4 rounded-lg bg-surface dark:bg-primary-dark/50">
+      <div className="grid grid-cols-2 gap-4 mb-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50">
         <div>
-          <p className="text-xs text-muted mb-1">Current GPA</p>
-          <p className="text-2xl font-display font-bold text-text dark:text-text-dark">{currentGPA.toFixed(2)}</p>
+          <p className="text-xs text-gray-500 mb-1">Current GPA</p>
+          <p className="text-2xl font-display font-bold text-gray-900 dark:text-gray-100">{currentGPA.toFixed(2)}</p>
         </div>
         <div>
-          <p className="text-xs text-muted mb-1">Projected GPA</p>
+          <p className="text-xs text-gray-500 mb-1">Projected GPA</p>
           <p className={`text-2xl font-display font-bold ${projectedGPA >= currentGPA ? 'text-success' : 'text-danger'}`}>
             {projectedGPA.toFixed(2)}
           </p>
@@ -221,12 +221,12 @@ function GPACalculator({ allGrades, scale }) {
         {hypotheticals.length > 0 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-2">
             {hypotheticals.map((h, i) => (
-              <div key={i} className="flex items-center justify-between px-3 py-2 rounded-md bg-surface dark:bg-primary-dark/50 border border-border dark:border-border-dark">
+              <div key={i} className="flex items-center justify-between px-3 py-2 rounded-md bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700">
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium text-text dark:text-text-dark truncate">{h.course}</p>
-                  <p className="text-xs text-muted">{h.credits} credits • {h.score}% ({getGradeLetter(h.score).letter})</p>
+                  <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{h.course}</p>
+                  <p className="text-xs text-gray-500">{h.credits} credits • {h.score}% ({getGradeLetter(h.score).letter})</p>
                 </div>
-                <button onClick={() => removeHypo(i)} className="p-1 rounded text-muted hover:text-danger transition-colors">
+                <button onClick={() => removeHypo(i)} className="p-1 rounded text-gray-500 hover:text-danger transition-colors">
                   <Trash2 size={14} />
                 </button>
               </div>
@@ -236,7 +236,7 @@ function GPACalculator({ allGrades, scale }) {
       </AnimatePresence>
 
       {hypotheticals.length === 0 && (
-        <p className="text-xs text-muted text-center py-3">Add hypothetical grades to see how they affect your GPA</p>
+        <p className="text-xs text-gray-500 text-center py-3">Add hypothetical grades to see how they affect your GPA</p>
       )}
     </Card>
   )
@@ -250,27 +250,27 @@ function GradeRow({ grade, onEdit, onDelete, scale }) {
     <motion.div
       initial={{ opacity: 0, x: -8 }}
       animate={{ opacity: 1, x: 0 }}
-      className="flex items-center gap-3 px-4 py-3 hover:bg-border/20 dark:hover:bg-border-dark/20 transition-colors rounded-lg group"
+      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100/20 dark:hover:bg-gray-800/20 transition-colors rounded-lg group"
     >
       <div className="min-w-0 flex-1 grid grid-cols-5 gap-2 items-center text-sm">
         <div className="col-span-2">
-          <p className="font-medium text-text dark:text-text-dark truncate">{grade.course}</p>
-          <p className="text-xs text-muted">{grade.courseCode}</p>
+          <p className="font-medium text-gray-900 dark:text-gray-100 truncate">{grade.course}</p>
+          <p className="text-xs text-gray-500">{grade.courseCode}</p>
         </div>
-        <span className="text-muted">{grade.credits}</span>
-        <span className="text-muted">{Math.round(grade.score)}%</span>
+        <span className="text-gray-500">{grade.credits}</span>
+        <span className="text-gray-500">{Math.round(grade.score)}%</span>
         <div className="flex items-center gap-2">
           <span className={`inline-flex items-center justify-center w-8 h-8 rounded-md text-sm font-bold ${bg} ${color}`}>
             {letter}
           </span>
-          <span className="text-[11px] text-muted">({points.toFixed(scale === '4.0' ? 1 : 0)})</span>
+          <span className="text-[11px] text-gray-500">({points.toFixed(scale === '4.0' ? 1 : 0)})</span>
         </div>
       </div>
       <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-        <button onClick={() => onEdit(grade)} className="p-1.5 rounded-md hover:bg-border dark:hover:bg-border-dark text-muted transition-colors">
+        <button onClick={() => onEdit(grade)} className="p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 transition-colors">
           <Edit3 size={14} />
         </button>
-        <button onClick={() => onDelete(grade)} className="p-1.5 rounded-md hover:bg-border dark:hover:bg-border-dark text-muted hover:text-danger transition-colors">
+        <button onClick={() => onDelete(grade)} className="p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 hover:text-danger transition-colors">
           <Trash2 size={14} />
         </button>
       </div>
@@ -286,15 +286,15 @@ function SemesterSection({ semester, grades, onEdit, onDelete, scale, defaultOpe
     <Card className="overflow-hidden">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between p-4 hover:bg-border/10 dark:hover:bg-border-dark/10 transition-colors"
+        className="w-full flex items-center justify-between p-4 hover:bg-gray-100/10 dark:hover:bg-gray-800/10 transition-colors"
       >
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-lg bg-primary/10 dark:bg-accent/10 flex items-center justify-center">
             <BookOpen size={16} className="text-primary dark:text-accent" />
           </div>
           <div className="text-left">
-            <h4 className="text-sm font-semibold text-text dark:text-text-dark">{semester.semester || semester.name || 'Semester'}</h4>
-            <p className="text-xs text-muted">{grades.length} courses • {semester.year || ''}</p>
+            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{semester.semester || semester.name || 'Semester'}</h4>
+            <p className="text-xs text-gray-500">{grades.length} courses • {semester.year || ''}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -303,7 +303,7 @@ function SemesterSection({ semester, grades, onEdit, onDelete, scale, defaultOpe
               GPA: {semesterGPA.toFixed(2)}
             </p>
           </div>
-          {expanded ? <ChevronUp size={18} className="text-muted" /> : <ChevronDown size={18} className="text-muted" />}
+          {expanded ? <ChevronUp size={18} className="text-gray-500" /> : <ChevronDown size={18} className="text-gray-500" />}
         </div>
       </button>
 
@@ -314,7 +314,7 @@ function SemesterSection({ semester, grades, onEdit, onDelete, scale, defaultOpe
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="overflow-hidden border-t border-border dark:border-border-dark"
+            className="overflow-hidden border-t border-gray-200 dark:border-gray-700"
           >
             <div className="divide-y divide-border/40 dark:divide-border-dark/40">
               {grades.map((grade) => (
@@ -427,17 +427,17 @@ export default function AcademicTracker() {
     <PageWrapper title={t('academic.academicTracker')}>
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium text-muted">GPA Scale:</span>
-          <div className="flex rounded-md border border-border dark:border-border-dark overflow-hidden">
+          <span className="text-xs font-medium text-gray-500">GPA Scale:</span>
+          <div className="flex rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
             <button
               onClick={() => setScale('4.0')}
-              className={`px-3 py-1.5 text-xs font-medium transition-colors ${scale === '4.0' ? 'bg-primary text-white dark:bg-accent dark:text-black' : 'text-muted hover:bg-border/30'}`}
+              className={`px-3 py-1.5 text-xs font-medium transition-colors ${scale === '4.0' ? 'bg-primary text-white dark:bg-accent dark:text-black' : 'text-gray-500 hover:bg-gray-100/30'}`}
             >
               4.0
             </button>
             <button
               onClick={() => setScale('20')}
-              className={`px-3 py-1.5 text-xs font-medium transition-colors ${scale === '20' ? 'bg-primary text-white dark:bg-accent dark:text-black' : 'text-muted hover:bg-border/30'}`}
+              className={`px-3 py-1.5 text-xs font-medium transition-colors ${scale === '20' ? 'bg-primary text-white dark:bg-accent dark:text-black' : 'text-gray-500 hover:bg-gray-100/30'}`}
             >
               20-Point
             </button>
@@ -504,7 +504,7 @@ export default function AcademicTracker() {
             <Card>
               <div className="flex items-center gap-2 mb-4">
                 <TrendingUp size={18} className="text-primary dark:text-accent" />
-                <h3 className="text-sm font-semibold text-text dark:text-text-dark">{t('academic.trend')}</h3>
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{t('academic.trend')}</h3>
               </div>
               {gpaTrendData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={250}>
@@ -524,7 +524,7 @@ export default function AcademicTracker() {
                   </LineChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="flex items-center justify-center h-[250px] text-sm text-muted">
+                <div className="flex items-center justify-center h-[250px] text-sm text-gray-500">
                   No semester data available
                 </div>
               )}
@@ -533,7 +533,7 @@ export default function AcademicTracker() {
             <Card>
               <div className="flex items-center gap-2 mb-4">
                 <PieChart size={18} className="text-primary dark:text-accent" />
-                <h3 className="text-sm font-semibold text-text dark:text-text-dark">{t('academic.gradeDistribution')}</h3>
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{t('academic.gradeDistribution')}</h3>
               </div>
               {gradeDistribution.some((g) => g.value > 0) ? (
                 <div className="flex items-center justify-center">
@@ -564,13 +564,13 @@ export default function AcademicTracker() {
                         verticalAlign="bottom"
                         iconType="circle"
                         iconSize={8}
-                        formatter={(value) => <span className="text-xs text-text dark:text-text-dark">{value}</span>}
+                        formatter={(value) => <span className="text-xs text-gray-900 dark:text-gray-100">{value}</span>}
                       />
                     </RePieChart>
                   </ResponsiveContainer>
                 </div>
               ) : (
-                <div className="flex items-center justify-center h-[250px] text-sm text-muted">
+                <div className="flex items-center justify-center h-[250px] text-sm text-gray-500">
                   No grade data available
                 </div>
               )}
@@ -578,7 +578,7 @@ export default function AcademicTracker() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-text dark:text-text-dark">{t('academic.semester')} Breakdown</h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{t('academic.semester')} Breakdown</h3>
             {groupBySemester.map((sem, idx) => (
               <SemesterSection
                 key={sem.id || idx}

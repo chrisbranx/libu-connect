@@ -3,44 +3,32 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #1E1B4B;
-  --color-primary-light: #312E81;
+  --color-primary: #2563EB;
+  --color-primary-dark: #1D4ED8;
   --color-accent: #F59E0B;
   --color-accent-light: #FCD34D;
-  --color-success: #059669;
-  --color-danger: #DC2626;
-  --color-warning: #D97706;
-  --color-surface: #F8F7FF;
-  --color-border: #E5E4F0;
-  --color-text: #1F1D35;
-  --color-muted: #6B6880;
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-xl: 28px;
-  --shadow-sm: 0 1px 3px rgba(30,27,75,0.08);
-  --shadow-md: 0 4px 12px rgba(30,27,75,0.12);
-  --shadow-lg: 0 8px 32px rgba(30,27,75,0.16);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
 }
 
 .dark {
-  --color-primary: #6C63FF;
-  --color-surface: #1A1A2E;
-  --color-border: #2D2B45;
-  --color-text: #E8E6F0;
-  --color-muted: #9896B0;
+  --color-primary: #3B82F6;
+  --color-primary-dark: #60A5FA;
+  --color-accent: #FBBF24;
+  --color-accent-light: #FDE68A;
 }
 
 *, *::before, *::after {
   margin: 0; padding: 0; box-sizing: border-box;
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 body {
   font-family: 'Satoshi', 'DM Sans', sans-serif;
-  background-color: var(--color-surface);
-  color: var(--color-text);
-  transition: background-color 0.4s ease, color 0.4s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

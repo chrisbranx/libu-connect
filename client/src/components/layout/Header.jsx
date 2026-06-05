@@ -49,11 +49,11 @@ export default function Header({ onMenuClick }) {
   }
 
   return (
-    <header className="sticky top-0 z-20 h-16 lg:h-20 bg-white dark:bg-primary-dark border-b border-border dark:border-border-dark flex items-center justify-between px-4 lg:px-6">
+    <header className="sticky top-0 z-20 h-16 lg:h-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-4 lg:px-6">
       <div className="flex items-center gap-3">
         <button
           onClick={onMenuClick}
-          className="lg:hidden p-2 rounded-md hover:bg-border dark:hover:bg-border-dark text-text-muted dark:text-text-dark transition-colors"
+          className="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400 transition-colors"
         >
           <Menu size={22} />
         </button>
@@ -63,7 +63,7 @@ export default function Header({ onMenuClick }) {
         <div className="relative" ref={notifRef}>
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="relative p-2 rounded-md hover:bg-border dark:hover:bg-border-dark text-text-muted dark:text-text-dark transition-colors"
+            className="relative p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-100 transition-colors"
           >
             <Bell size={20} />
             {unreadCount > 0 && (
@@ -80,10 +80,10 @@ export default function Header({ onMenuClick }) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -8, scale: 0.96 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-0 top-full mt-2 w-80 rounded-md bg-white dark:bg-primary-dark border border-border dark:border-border-dark shadow-lg overflow-hidden"
+                className="absolute right-0 top-full mt-2 w-80 rounded-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden"
               >
-                <div className="flex items-center justify-between px-4 py-3 border-b border-border dark:border-border-dark">
-                  <span className="text-sm font-semibold text-text dark:text-text-dark">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                  <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                     {t('settings.notifications')}
                   </span>
                   {unreadCount > 0 && (
@@ -97,7 +97,7 @@ export default function Header({ onMenuClick }) {
                 </div>
                 <div className="max-h-72 overflow-y-auto">
                   {notifications.length === 0 ? (
-                    <div className="px-4 py-8 text-center text-sm text-text-muted dark:text-text-dark">
+                    <div className="px-4 py-8 text-center text-sm text-gray-500 dark:text-gray-100">
                       No notifications
                     </div>
                   ) : (
@@ -105,12 +105,12 @@ export default function Header({ onMenuClick }) {
                       <button
                         key={notif.id}
                         onClick={() => markAsRead(notif.id)}
-                        className={`w-full text-left px-4 py-3 border-b border-border dark:border-border-dark hover:bg-surface dark:hover:bg-border-dark transition-colors ${
+                        className={`w-full text-left px-4 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
                           !notif.isRead ? 'bg-accent/5' : ''
                         }`}
                       >
-                        <p className="text-sm text-text dark:text-text-dark line-clamp-2">{notif.message}</p>
-                        <p className="text-xs text-text-muted mt-1">
+                        <p className="text-sm text-gray-900 dark:text-gray-100 line-clamp-2">{notif.message}</p>
+                        <p className="text-xs text-gray-500 mt-1">
                           {new Date(notif.createdAt).toLocaleDateString()}
                         </p>
                       </button>
@@ -124,7 +124,7 @@ export default function Header({ onMenuClick }) {
 
         <button
           onClick={toggleDarkMode}
-          className="p-2 rounded-md hover:bg-border dark:hover:bg-border-dark text-text-muted dark:text-text-dark transition-colors"
+          className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-100 transition-colors"
           title={darkMode ? 'Light mode' : 'Dark mode'}
         >
           {darkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -132,7 +132,7 @@ export default function Header({ onMenuClick }) {
 
         <button
           onClick={cycleLanguage}
-          className="p-2 rounded-md hover:bg-border dark:hover:bg-border-dark text-text-muted dark:text-text-dark transition-colors text-sm font-semibold"
+          className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-100 transition-colors text-sm font-semibold"
           title="Toggle language"
         >
           <Globe size={20} />
@@ -141,14 +141,14 @@ export default function Header({ onMenuClick }) {
         <div className="relative" ref={userMenuRef}>
           <button
             onClick={() => setShowUserMenu(!showUserMenu)}
-            className="ml-2 flex items-center gap-2 p-1 rounded-md hover:bg-border dark:hover:bg-border-dark transition-colors"
+            className="ml-2 flex items-center gap-2 p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             <Avatar
               src={user?.avatar}
               name={user?.firstName + ' ' + user?.lastName || 'User'}
               size="sm"
             />
-            <span className="hidden lg:block text-sm font-medium text-text dark:text-text-dark max-w-[120px] truncate">
+            <span className="hidden lg:block text-sm font-medium text-gray-900 dark:text-gray-100 max-w-[120px] truncate">
               {user?.firstName} {user?.lastName}
             </span>
           </button>
@@ -160,18 +160,18 @@ export default function Header({ onMenuClick }) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -8, scale: 0.96 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-0 top-full mt-2 w-48 rounded-md bg-white dark:bg-primary-dark border border-border dark:border-border-dark shadow-lg overflow-hidden"
+                className="absolute right-0 top-full mt-2 w-48 rounded-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden"
               >
                 <button
                   onClick={() => { setShowUserMenu(false); navigate('/settings'); }}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-text dark:text-text-dark hover:bg-surface dark:hover:bg-border-dark transition-colors"
+                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                 >
                   <Settings size={16} />
                   {t('nav.settings')}
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-text dark:text-text-dark hover:bg-surface dark:hover:bg-border-dark transition-colors"
+                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                 >
                   <LogOut size={16} />
                   {t('nav.logout')}

@@ -43,15 +43,15 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.2 }}
             className={`
-              relative w-full ${sizeStyles[size]} bg-white dark:bg-primary-dark
+              relative w-full ${sizeStyles[size]} bg-white dark:bg-gray-800
               rounded-md shadow-lg max-h-[85vh] flex flex-col
             `}
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-border dark:border-border-dark">
-              <h2 className="text-lg font-semibold text-text dark:text-text-dark">{title}</h2>
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
               <button
                 onClick={onClose}
-                className="p-1 rounded-md text-muted hover:bg-border dark:hover:bg-border-dark transition-colors"
+                className="p-1 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <X size={20} />
               </button>

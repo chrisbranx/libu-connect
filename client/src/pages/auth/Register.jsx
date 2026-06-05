@@ -75,7 +75,7 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-surface dark:bg-primary-dark py-12">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-50 dark:bg-gray-900 py-12">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 dark:bg-primary-light/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/5 dark:bg-accent/10 rounded-full blur-3xl" />
@@ -87,7 +87,7 @@ export default function Register() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="relative z-10 w-full max-w-lg mx-4"
       >
-        <div className="bg-white dark:bg-primary-dark rounded-xl shadow-lg p-8 sm:p-10 border border-border dark:border-border-dark">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 sm:p-10 border border-gray-200 dark:border-gray-700">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -97,10 +97,10 @@ export default function Register() {
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent text-black mb-4">
               <GraduationCap size={28} />
             </div>
-            <h1 className="text-3xl font-display font-bold text-text dark:text-text-dark">
+            <h1 className="text-3xl font-display font-bold text-gray-900 dark:text-gray-100">
               {t('auth.register')}
             </h1>
-            <p className="text-sm text-muted mt-1">
+            <p className="text-sm text-gray-500 mt-1">
               {t('auth.haveAccount')}{' '}
               <Link
                 to="/login"
@@ -114,17 +114,17 @@ export default function Register() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+                <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                   {t('auth.firstName')}
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
                     <User size={16} />
                   </div>
                   <input
                     {...register('firstName')}
                     placeholder={t('auth.firstName')}
-                    className={`w-full rounded-md border ${errors.firstName ? 'border-danger' : 'border-border dark:border-border-dark'} bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-3 py-2.5 text-sm`}
+                    className={`w-full rounded-md border ${errors.firstName ? 'border-danger' : 'border-gray-200 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-3 py-2.5 text-sm`}
                   />
                 </div>
                 {errors.firstName && (
@@ -133,17 +133,17 @@ export default function Register() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+                <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                   {t('auth.lastName')}
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
                     <User size={16} />
                   </div>
                   <input
                     {...register('lastName')}
                     placeholder={t('auth.lastName')}
-                    className={`w-full rounded-md border ${errors.lastName ? 'border-danger' : 'border-border dark:border-border-dark'} bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-3 py-2.5 text-sm`}
+                    className={`w-full rounded-md border ${errors.lastName ? 'border-danger' : 'border-gray-200 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-3 py-2.5 text-sm`}
                   />
                 </div>
                 {errors.lastName && (
@@ -153,11 +153,11 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+              <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                 {t('auth.email')}
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
                   <Mail size={16} />
                 </div>
                 <input
@@ -165,7 +165,7 @@ export default function Register() {
                   type="email"
                   autoComplete="email"
                   placeholder="you@university.edu"
-                  className={`w-full rounded-md border ${errors.email ? 'border-danger' : 'border-border dark:border-border-dark'} bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-3 py-2.5 text-sm`}
+                  className={`w-full rounded-md border ${errors.email ? 'border-danger' : 'border-gray-200 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-3 py-2.5 text-sm`}
                 />
               </div>
               {errors.email && (
@@ -175,11 +175,11 @@ export default function Register() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+                <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                   {t('auth.password')}
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
                     <Lock size={16} />
                   </div>
                   <input
@@ -187,12 +187,12 @@ export default function Register() {
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     placeholder="••••••••"
-                    className={`w-full rounded-md border ${errors.password ? 'border-danger' : 'border-border dark:border-border-dark'} bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-10 py-2.5 text-sm`}
+                    className={`w-full rounded-md border ${errors.password ? 'border-danger' : 'border-gray-200 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-10 py-2.5 text-sm`}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-text dark:hover:text-text-dark transition-colors"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
                   >
                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
@@ -203,11 +203,11 @@ export default function Register() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+                <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                   {t('auth.confirmPassword') || 'Confirm Password'}
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
                     <Lock size={16} />
                   </div>
                   <input
@@ -215,12 +215,12 @@ export default function Register() {
                     type={showConfirmPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     placeholder="••••••••"
-                    className={`w-full rounded-md border ${errors.confirmPassword ? 'border-danger' : 'border-border dark:border-border-dark'} bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-10 py-2.5 text-sm`}
+                    className={`w-full rounded-md border ${errors.confirmPassword ? 'border-danger' : 'border-gray-200 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 pl-10 pr-10 py-2.5 text-sm`}
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-text dark:hover:text-text-dark transition-colors"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
                   >
                     {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
@@ -232,7 +232,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+              <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                 {t('auth.role')}
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -242,7 +242,7 @@ export default function Register() {
                     className={`flex items-center justify-center gap-2 p-3 rounded-md border cursor-pointer transition-all duration-200 ${
                       selectedRole === r.value
                         ? 'border-primary bg-primary/5 dark:bg-primary-light/10 text-primary dark:text-accent font-medium'
-                        : 'border-border dark:border-border-dark text-muted hover:border-primary/30 hover:text-text dark:hover:text-text-dark'
+                        : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:border-primary/30 hover:text-gray-900 dark:hover:text-gray-100'
                     }`}
                   >
                     <input
@@ -262,13 +262,13 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+              <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                 {t('auth.department')}
               </label>
               <input
                 {...register('department')}
                 placeholder="Computer Science"
-                className={`w-full rounded-md border ${errors.department ? 'border-danger' : 'border-border dark:border-border-dark'} bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2.5 text-sm`}
+                className={`w-full rounded-md border ${errors.department ? 'border-danger' : 'border-gray-200 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2.5 text-sm`}
               />
               {errors.department && (
                 <p className="mt-1 text-xs text-danger">{errors.department.message}</p>
@@ -283,13 +283,13 @@ export default function Register() {
                 className="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-hidden"
               >
                 <div>
-                  <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+                  <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                     {t('auth.level')}
                   </label>
                   <input
                     {...register('level')}
                     placeholder="Year 3"
-                    className={`w-full rounded-md border ${errors.level ? 'border-danger' : 'border-border dark:border-border-dark'} bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2.5 text-sm`}
+                    className={`w-full rounded-md border ${errors.level ? 'border-danger' : 'border-gray-200 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2.5 text-sm`}
                   />
                   {errors.level && (
                     <p className="mt-1 text-xs text-danger">{errors.level.message}</p>
@@ -297,13 +297,13 @@ export default function Register() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-text dark:text-text-dark mb-1.5">
+                  <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-1.5">
                     {t('auth.matricule')}
                   </label>
                   <input
                     {...register('matricule')}
                     placeholder="FE20XXX"
-                    className={`w-full rounded-md border ${errors.matricule ? 'border-danger' : 'border-border dark:border-border-dark'} bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2.5 text-sm`}
+                    className={`w-full rounded-md border ${errors.matricule ? 'border-danger' : 'border-gray-200 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-200 px-3 py-2.5 text-sm`}
                   />
                   {errors.matricule && (
                     <p className="mt-1 text-xs text-danger">{errors.matricule.message}</p>

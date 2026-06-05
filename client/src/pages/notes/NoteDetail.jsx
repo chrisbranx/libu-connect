@@ -23,18 +23,18 @@ function TiptapToolbar({ editor }) {
     <button
       type="button"
       onClick={onClick}
-      className={`p-1.5 rounded text-xs font-medium transition-colors ${active ? 'bg-primary/10 dark:bg-primary/30 text-primary dark:text-accent' : 'text-text dark:text-text-dark hover:bg-border dark:hover:bg-border-dark'}`}
+      className={`p-1.5 rounded text-xs font-medium transition-colors ${active ? 'bg-primary/10 dark:bg-primary/30 text-primary dark:text-accent' : 'text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
     >
       {label}
     </button>
   )
 
   return (
-    <div className="flex items-center gap-1 p-2 border-b border-border dark:border-border-dark bg-surface dark:bg-primary-dark/30 rounded-t-md flex-wrap">
+    <div className="flex items-center gap-1 p-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/30 rounded-t-md flex-wrap">
       {btn(editor.isActive('bold'), () => editor.chain().focus().toggleBold().run(), <span className="font-bold">B</span>)}
       {btn(editor.isActive('italic'), () => editor.chain().focus().toggleItalic().run(), <span className="italic">I</span>)}
       {btn(editor.isActive('heading', { level: 2 }), () => editor.chain().focus().toggleHeading({ level: 2 }).run(), <span className="text-xs">H</span>)}
-      <span className="w-px h-4 bg-border dark:bg-border-dark mx-1" />
+      <span className="w-px h-4 bg-gray-100 dark:bg-gray-100-dark mx-1" />
       {btn(editor.isActive('bulletList'), () => editor.chain().focus().toggleBulletList().run(), <span>•</span>)}
       {btn(editor.isActive('orderedList'), () => editor.chain().focus().toggleOrderedList().run(), <span>1.</span>)}
       {btn(editor.isActive('blockquote'), () => editor.chain().focus().toggleBlockquote().run(), <span className="text-xs">"</span>)}
@@ -144,13 +144,13 @@ export default function NoteDetail() {
       <div className="max-w-3xl mx-auto">
         <button
           onClick={() => navigate('/notes')}
-          className="flex items-center gap-1.5 text-sm text-muted hover:text-text dark:hover:text-text-dark transition-colors mb-6 group"
+          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors mb-6 group"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
           Back to Notes
         </button>
 
-        <div className="bg-white dark:bg-primary-dark rounded-md border border-border dark:border-border-dark shadow-sm overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
           <div className="p-6 pb-4">
             <div className="flex items-start justify-between gap-4 mb-4">
               {editing ? (
@@ -158,11 +158,11 @@ export default function NoteDetail() {
                   type="text"
                   value={editTitle}
                   onChange={(e) => setEditTitle(e.target.value)}
-                  className="flex-1 text-xl lg:text-2xl font-display font-bold bg-transparent border-b-2 border-primary dark:border-accent text-text dark:text-text-dark focus:outline-none pb-1"
+                  className="flex-1 text-xl lg:text-2xl font-display font-bold bg-transparent border-b-2 border-primary dark:border-accent text-gray-900 dark:text-gray-100 focus:outline-none pb-1"
                   autoFocus
                 />
               ) : (
-                <h1 className="text-xl lg:text-2xl font-display font-bold text-text dark:text-text-dark">
+                <h1 className="text-xl lg:text-2xl font-display font-bold text-gray-900 dark:text-gray-100">
                   {selectedNote.title || 'Untitled'}
                 </h1>
               )}
@@ -170,7 +170,7 @@ export default function NoteDetail() {
               <div className="flex items-center gap-1 shrink-0">
                 <button
                   onClick={handleTogglePin}
-                  className="p-2 rounded-md hover:bg-border dark:hover:bg-border-dark text-muted transition-colors"
+                  className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 transition-colors"
                   title={selectedNote.pinned ? t('notes.unpinNote') : t('notes.pinNote')}
                 >
                   {selectedNote.pinned ? <PinOff size={16} className="text-accent" /> : <Pin size={16} />}
@@ -180,14 +180,14 @@ export default function NoteDetail() {
                     <button
                       onClick={handleSave}
                       disabled={saving}
-                      className="p-2 rounded-md hover:bg-border dark:hover:bg-border-dark text-success transition-colors"
+                      className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-success transition-colors"
                       title="Save"
                     >
                       {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
                     </button>
                     <button
                       onClick={handleCancelEdit}
-                      className="p-2 rounded-md hover:bg-border dark:hover:bg-border-dark text-muted transition-colors"
+                      className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 transition-colors"
                       title="Cancel"
                     >
                       <X size={16} />
@@ -196,7 +196,7 @@ export default function NoteDetail() {
                 ) : (
                   <button
                     onClick={() => setEditing(true)}
-                    className="p-2 rounded-md hover:bg-border dark:hover:bg-border-dark text-muted transition-colors"
+                    className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 transition-colors"
                     title={t('common.edit')}
                   >
                     <Edit3 size={16} />
@@ -214,14 +214,14 @@ export default function NoteDetail() {
                 </Badge>
               )}
               {(selectedNote.tags || []).map((tag) => (
-                <span key={tag} className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded bg-border/50 dark:bg-border-dark/50 text-muted">
+                <span key={tag} className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded bg-gray-100/50 dark:bg-gray-800/50 text-gray-500">
                   <Tag size={10} />
                   {tag}
                 </span>
               ))}
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs text-muted">
+            <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
               <span className="flex items-center gap-1">
                 <CalendarDays size={12} />
                 {createdDate}
@@ -235,7 +235,7 @@ export default function NoteDetail() {
             </div>
           </div>
 
-          <div className="border-t border-border dark:border-border-dark">
+          <div className="border-t border-gray-200 dark:border-gray-700">
             {editing ? (
               <div>
                 <TiptapToolbar editor={editor} />
@@ -244,12 +244,12 @@ export default function NoteDetail() {
             ) : (
               <div
                 className="tiptap px-6 py-4"
-                dangerouslySetInnerHTML={{ __html: selectedNote.content || '<p class="text-muted">No content</p>' }}
+                dangerouslySetInnerHTML={{ __html: selectedNote.content || '<p class="text-gray-500">No content</p>' }}
               />
             )}
           </div>
 
-          <div className="flex items-center justify-between px-6 py-4 border-t border-border dark:border-border-dark no-print">
+          <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 dark:border-gray-700 no-print">
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm" icon={Download} onClick={handleDownloadPdf}>
                 {t('notes.downloadPdf')}

@@ -1,7 +1,8 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import useAuthStore from './store/authStore';
 import useThemeStore from './store/themeStore';
+import SplashScreen from './components/layout/SplashScreen';
 
 const Login = React.lazy(() => import('./pages/auth/Login'));
 const Register = React.lazy(() => import('./pages/auth/Register'));
@@ -20,27 +21,24 @@ const AdminPanel = React.lazy(() => import('./pages/admin/AdminPanel'));
 import Layout from './components/layout/Layout';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 
-const LoadingFallback = () => (
-  <div className="flex items-center justify-center min-h-screen bg-surface dark:bg-surface-dark">
-    <div className="flex flex-col items-center gap-4">
-      <div className="w-12 h-12 rounded-full bg-primary animate-pulse" />
-      <span className="font-display text-lg text-primary dark:text-text-dark font-semibold">LIBU Connect</span>
-    </div>
-  </div>
-);
-
 export default function App() {
   const { darkMode, initTheme } = useThemeStore();
   const { checkAuth, isLoading } = useAuthStore();
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => { initTheme(); }, []);
   useEffect(() => { document.documentElement.classList.toggle('dark', darkMode); }, [darkMode]);
   useEffect(() => { checkAuth(); }, []);
 
-  if (isLoading) return <LoadingFallback />;
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showSplash || isLoading) return <SplashScreen />;
 
   return (
-    <Suspense fallback={<LoadingFallback />}>
+    <Suspense fallback={<SplashScreen />}>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

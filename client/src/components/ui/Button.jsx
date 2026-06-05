@@ -4,7 +4,7 @@ const variantStyles = {
   primary: 'bg-primary text-white hover:bg-primary-light',
   secondary: 'bg-accent text-black hover:bg-accent-light',
   outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white',
-  ghost: 'text-muted hover:bg-border',
+  ghost: 'text-gray-500 hover:bg-gray-100',
   danger: 'bg-danger text-white',
 }
 

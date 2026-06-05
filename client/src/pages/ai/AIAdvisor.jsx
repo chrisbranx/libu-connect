@@ -39,7 +39,7 @@ function TypingIndicator() {
       <div className="shrink-0 w-8 h-8 rounded-full bg-primary/10 dark:bg-accent/10 flex items-center justify-center">
         <Bot size={16} className="text-primary dark:text-accent" />
       </div>
-      <div className="bg-white dark:bg-primary-dark border border-border dark:border-border-dark rounded-lg px-4 py-3 shadow-sm">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 shadow-sm">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-primary dark:bg-accent animate-bounce" style={{ animationDelay: '0ms' }} />
           <span className="w-2 h-2 rounded-full bg-primary dark:bg-accent animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -78,7 +78,7 @@ function MessageBubble({ message }) {
         className={`max-w-[85%] sm:max-w-[75%] rounded-lg px-4 py-2.5 text-sm leading-relaxed shadow-sm ${
           isUser
             ? 'bg-primary text-white rounded-tr-sm'
-            : 'bg-white dark:bg-primary-dark border border-border dark:border-border-dark text-text dark:text-text-dark rounded-tl-sm'
+            : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-tl-sm'
         }`}
       >
         {message.content}
@@ -98,10 +98,10 @@ function WelcomeMessage({ onChipClick, t }) {
       <div className="w-16 h-16 rounded-2xl bg-primary/10 dark:bg-accent/10 flex items-center justify-center mb-5">
         <Sparkles size={32} className="text-primary dark:text-accent" />
       </div>
-      <h2 className="text-xl font-display font-bold text-text dark:text-text-dark mb-2">
+      <h2 className="text-xl font-display font-bold text-gray-900 dark:text-gray-100 mb-2">
         {t('ai.chatWithAI')}
       </h2>
-      <p className="text-sm text-muted max-w-md mb-8">
+      <p className="text-sm text-gray-500 max-w-md mb-8">
         Ask me anything about your schedule, grades, notes, or campus activities. I&apos;m here to help you succeed.
       </p>
       <div className="flex flex-wrap justify-center gap-2 max-w-lg">
@@ -109,7 +109,7 @@ function WelcomeMessage({ onChipClick, t }) {
           <button
             key={chip.key}
             onClick={() => onChipClick(chip)}
-            className="px-3.5 py-2 rounded-md text-sm bg-white dark:bg-primary-dark border border-border dark:border-border-dark text-text dark:text-text-dark hover:bg-primary/5 dark:hover:bg-accent/5 hover:border-primary/30 dark:hover:border-accent/30 transition-all"
+            className="px-3.5 py-2 rounded-md text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-primary/5 dark:hover:bg-accent/5 hover:border-primary/30 dark:hover:border-accent/30 transition-all"
           >
             {t(chip.labelKey)}
           </button>
@@ -162,11 +162,11 @@ function AIContextPanel() {
     <div className="h-full flex flex-col">
       <div className="flex items-center gap-2 mb-4">
         <Bot size={18} className="text-primary dark:text-accent" />
-        <h3 className="font-display font-semibold text-text dark:text-text-dark text-sm">
+        <h3 className="font-display font-semibold text-gray-900 dark:text-gray-100 text-sm">
           {t('ai.aiContext')}
         </h3>
       </div>
-      <p className="text-xs text-muted mb-4">
+      <p className="text-xs text-gray-500 mb-4">
         {t('ai.thisIsWhatAISees')}
       </p>
       <div className="flex-1 space-y-2 overflow-y-auto">
@@ -177,14 +177,14 @@ function AIContextPanel() {
           return (
             <div
               key={item.key}
-              className="p-3 rounded-lg bg-white dark:bg-primary-dark border border-border dark:border-border-dark hover:border-primary/20 dark:hover:border-accent/20 transition-colors"
+              className="p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-primary/20 dark:hover:border-accent/20 transition-colors"
             >
               <div className="flex items-center justify-between mb-1.5">
                 <div className="flex items-center gap-2">
                   <div className={`w-7 h-7 rounded-md flex items-center justify-center ${item.bg}`}>
                     <item.icon size={14} className={item.color} />
                   </div>
-                  <span className="text-xs font-medium text-text dark:text-text-dark">
+                  <span className="text-xs font-medium text-gray-900 dark:text-gray-100">
                     {t(item.labelKey)}
                   </span>
                 </div>
@@ -193,18 +193,18 @@ function AIContextPanel() {
                     {count.toFixed(2)}
                   </span>
                 ) : (
-                  <span className={`text-xs font-semibold ${count > 0 ? 'text-primary dark:text-accent' : 'text-muted'}`}>
+                  <span className={`text-xs font-semibold ${count > 0 ? 'text-primary dark:text-accent' : 'text-gray-500'}`}>
                     {count ?? 0}
                   </span>
                 )}
               </div>
               {preview && (
-                <p className="text-[11px] text-muted truncate leading-relaxed pl-9">
+                <p className="text-[11px] text-gray-500 truncate leading-relaxed pl-9">
                   {preview}
                 </p>
               )}
               {!preview && count > 0 && (
-                <p className="text-[11px] text-muted pl-9">{count} items</p>
+                <p className="text-[11px] text-gray-500 pl-9">{count} items</p>
               )}
             </div>
           )
@@ -290,11 +290,11 @@ export default function AIAdvisor() {
   return (
     <PageWrapper title={t('ai.aiAdvisor')}>
       <div className="flex flex-col lg:flex-row gap-4 h-[calc(100vh-12rem)] lg:h-[calc(100vh-10rem)]">
-        <div className="flex-1 flex flex-col bg-white dark:bg-primary-dark rounded-md border border-border dark:border-border-dark shadow-sm overflow-hidden min-h-0">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-border dark:border-border-dark shrink-0">
+        <div className="flex-1 flex flex-col bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden min-h-0">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 shrink-0">
             <div className="flex items-center gap-2">
               <Bot size={18} className="text-primary dark:text-accent" />
-              <span className="text-sm font-semibold text-text dark:text-text-dark">
+              <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                 {t('ai.aiAdvisor')}
               </span>
             </div>
@@ -332,7 +332,7 @@ export default function AIAdvisor() {
             <div ref={chatEndRef} />
           </div>
 
-          <div className="border-t border-border dark:border-border-dark shrink-0">
+          <div className="border-t border-gray-200 dark:border-gray-700 shrink-0">
             {messages.length > 0 && (
               <div className="flex gap-2 overflow-x-auto px-4 py-2.5 scrollbar-none">
                 {QUICK_CHIPS.map((chip) => (
@@ -340,7 +340,7 @@ export default function AIAdvisor() {
                     key={chip.key}
                     onClick={() => handleChipClick(chip)}
                     disabled={loading}
-                    className="px-3 py-1.5 rounded-md text-xs whitespace-nowrap bg-surface dark:bg-primary-dark/50 border border-border dark:border-border-dark text-text dark:text-text-dark hover:bg-primary/5 dark:hover:bg-accent/5 hover:border-primary/30 dark:hover:border-accent/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                    className="px-3 py-1.5 rounded-md text-xs whitespace-nowrap bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-primary/5 dark:hover:bg-accent/5 hover:border-primary/30 dark:hover:border-accent/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
                   >
                     {t(chip.labelKey)}
                   </button>
@@ -348,7 +348,7 @@ export default function AIAdvisor() {
               </div>
             )}
 
-            <div className="flex items-end gap-2 px-4 py-3 border-t border-border dark:border-border-dark">
+            <div className="flex items-end gap-2 px-4 py-3 border-t border-gray-200 dark:border-gray-700">
               <div className="flex-1 relative">
                 <textarea
                   ref={inputRef}
@@ -358,13 +358,13 @@ export default function AIAdvisor() {
                   placeholder={t('ai.typeMessage')}
                   rows={1}
                   disabled={loading}
-                  className="w-full pr-3 py-2.5 text-sm rounded-md border border-border dark:border-border-dark bg-surface dark:bg-primary-dark/50 text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none disabled:opacity-50"
+                  className="w-full pr-3 py-2.5 text-sm rounded-md border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none disabled:opacity-50"
                   style={{ minHeight: '40px' }}
                 />
               </div>
               <button
                 type="button"
-                className="shrink-0 p-2.5 rounded-md text-muted hover:text-text dark:hover:text-text-dark hover:bg-border/30 dark:hover:bg-border-dark/30 transition-colors disabled:opacity-50"
+                className="shrink-0 p-2.5 rounded-md text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100/30 dark:hover:bg-gray-800/30 transition-colors disabled:opacity-50"
                 disabled
                 title="Voice input (coming soon)"
               >
@@ -384,7 +384,7 @@ export default function AIAdvisor() {
         </div>
 
         <div className="lg:w-80 xl:w-96 shrink-0">
-          <div className="bg-white dark:bg-primary-dark rounded-md border border-border dark:border-border-dark shadow-sm p-4 h-full">
+          <div className="bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm p-4 h-full">
             <AIContextPanel />
           </div>
         </div>

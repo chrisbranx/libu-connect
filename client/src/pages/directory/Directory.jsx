@@ -66,7 +66,7 @@ function UserCard({ user, onClick }) {
             size="lg"
           />
           <div className="min-w-0 flex-1">
-            <h3 className="text-sm font-semibold text-text dark:text-text-dark truncate">
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">
               {fullName}
             </h3>
             <Badge
@@ -78,7 +78,7 @@ function UserCard({ user, onClick }) {
           </div>
         </div>
 
-        <div className="mt-3 space-y-1.5 text-xs text-muted">
+        <div className="mt-3 space-y-1.5 text-xs text-gray-500">
           {user.department && (
             <div className="flex items-center gap-1.5">
               <Building size={13} />
@@ -108,7 +108,7 @@ function UserProfileModal({ user, isOpen, onClose }) {
     <Modal isOpen={isOpen} onClose={onClose} title={fullName} size="md">
       <div className="flex flex-col items-center text-center mb-6">
         <Avatar src={user.avatar} name={fullName} size="xl" className="mb-4" />
-        <h2 className="text-lg font-semibold text-text dark:text-text-dark">{fullName}</h2>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{fullName}</h2>
         <Badge variant={ROLE_BADGE_VARIANT[user.role] || 'default'} className="mt-1.5">
           {t(ROLE_BADGE_LABEL_KEY[user.role] || 'common.noData')}
         </Badge>
@@ -116,56 +116,56 @@ function UserProfileModal({ user, isOpen, onClose }) {
 
       <div className="space-y-3">
         {user.department && (
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-surface dark:bg-primary-dark/50">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50">
             <Building size={16} className="text-primary dark:text-accent shrink-0" />
             <div className="text-left">
-              <p className="text-xs text-muted">{t('directory.department')}</p>
-              <p className="text-sm font-medium text-text dark:text-text-dark">{user.department}</p>
+              <p className="text-xs text-gray-500">{t('directory.department')}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{user.department}</p>
             </div>
           </div>
         )}
 
         {user.level && (
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-surface dark:bg-primary-dark/50">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50">
             <GraduationCap size={16} className="text-primary dark:text-accent shrink-0" />
             <div className="text-left">
-              <p className="text-xs text-muted">{t('directory.level')}</p>
-              <p className="text-sm font-medium text-text dark:text-text-dark">{user.level}</p>
+              <p className="text-xs text-gray-500">{t('directory.level')}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{user.level}</p>
             </div>
           </div>
         )}
 
         {user.matricule && (
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-surface dark:bg-primary-dark/50">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50">
             <UserCheck size={16} className="text-primary dark:text-accent shrink-0" />
             <div className="text-left">
-              <p className="text-xs text-muted">{t('auth.matricule')}</p>
-              <p className="text-sm font-medium text-text dark:text-text-dark">{user.matricule}</p>
+              <p className="text-xs text-gray-500">{t('auth.matricule')}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{user.matricule}</p>
             </div>
           </div>
         )}
 
         {user.email && (
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-surface dark:bg-primary-dark/50">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50">
             <Mail size={16} className="text-primary dark:text-accent shrink-0" />
             <div className="text-left">
-              <p className="text-xs text-muted">Email</p>
-              <p className="text-sm font-medium text-text dark:text-text-dark">{user.email}</p>
+              <p className="text-xs text-gray-500">Email</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{user.email}</p>
             </div>
           </div>
         )}
 
         {user.role === 'lecturer' && user.courses && user.courses.length > 0 && (
-          <div className="p-3 rounded-lg bg-surface dark:bg-primary-dark/50">
+          <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50">
             <div className="flex items-center gap-2 mb-2">
               <BookOpen size={16} className="text-primary dark:text-accent" />
-              <p className="text-xs text-muted font-medium">Courses</p>
+              <p className="text-xs text-gray-500 font-medium">Courses</p>
             </div>
             <div className="space-y-1.5">
               {user.courses.map((course, i) => (
-                <div key={course.code || i} className="flex items-center gap-2 text-sm text-text dark:text-text-dark">
+                <div key={course.code || i} className="flex items-center gap-2 text-sm text-gray-900 dark:text-gray-100">
                   {course.code && (
-                    <span className="text-xs font-mono text-muted px-1.5 py-0.5 rounded bg-border/50 dark:bg-border-dark/50">
+                    <span className="text-xs font-mono text-gray-500 px-1.5 py-0.5 rounded bg-gray-100/50 dark:bg-gray-800/50">
                       {course.code}
                     </span>
                   )}
@@ -177,16 +177,16 @@ function UserProfileModal({ user, isOpen, onClose }) {
         )}
 
         {user.role === 'student' && user.courses && user.courses.length > 0 && (
-          <div className="p-3 rounded-lg bg-surface dark:bg-primary-dark/50">
+          <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50">
             <div className="flex items-center gap-2 mb-2">
               <BookOpen size={16} className="text-primary dark:text-accent" />
-              <p className="text-xs text-muted font-medium">Enrolled Courses</p>
+              <p className="text-xs text-gray-500 font-medium">Enrolled Courses</p>
             </div>
             <div className="flex flex-wrap gap-1.5">
               {user.courses.map((course, i) => (
                 <span
                   key={course.code || i}
-                  className="text-xs px-2 py-1 rounded-md bg-border/50 dark:bg-border-dark/50 text-text dark:text-text-dark"
+                  className="text-xs px-2 py-1 rounded-md bg-gray-100/50 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100"
                 >
                   {course.code || course.title || course.name}
                 </span>
@@ -285,18 +285,18 @@ export default function Directory() {
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1 max-w-md">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t('directory.search')}
-              className="w-full pl-9 pr-3 py-2 text-sm rounded-md border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+              className="w-full pl-9 pr-3 py-2 text-sm rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-text dark:hover:text-text-dark transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
               >
                 <X size={14} />
               </button>
@@ -307,14 +307,14 @@ export default function Directory() {
             <select
               value={departmentFilter}
               onChange={(e) => setDepartmentFilter(e.target.value)}
-              className="appearance-none w-full sm:w-48 pl-3 pr-9 py-2 text-sm rounded-md border border-border dark:border-border-dark bg-white dark:bg-primary-dark text-text dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+              className="appearance-none w-full sm:w-48 pl-3 pr-9 py-2 text-sm rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
             >
               <option value="">{t('directory.department')}</option>
               {departments.filter(Boolean).map(d => (
                 <option key={d} value={d}>{d}</option>
               ))}
             </select>
-            <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+            <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
           </div>
         </div>
 
@@ -328,7 +328,7 @@ export default function Directory() {
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors shrink-0 ${
                   isActive
                     ? 'bg-primary text-white shadow-sm'
-                    : 'bg-white dark:bg-primary-dark border border-border dark:border-border-dark text-text dark:text-text-dark hover:bg-border/30 dark:hover:bg-border-dark/30'
+                    : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-100/30 dark:hover:bg-gray-800/30'
                 }`}
               >
                 {tab.icon && <tab.icon size={15} />}
@@ -367,7 +367,7 @@ export default function Directory() {
           </motion.div>
         )}
 
-        <p className="text-xs text-muted text-center pb-2">
+        <p className="text-xs text-gray-500 text-center pb-2">
           Showing {filtered.length} {filtered.length === 1 ? 'user' : 'users'}
         </p>
       </div>
