@@ -94,7 +94,7 @@ async function getSemesters(req, res) {
       grouped[key].gpa = calculateGPA(grouped[key].grades);
     }
 
-    res.status(200).json({ data: grouped });
+    res.status(200).json({ data: Object.values(grouped) });
   } catch (error) {
     console.error('GetSemesters error:', error);
     res.status(500).json({ error: 'Internal server error' });
