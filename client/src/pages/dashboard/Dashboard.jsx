@@ -14,6 +14,19 @@ import {
   MapPin,
   Clock,
   ArrowRight,
+  Sun,
+  Megaphone,
+  Shield,
+  UserCheck,
+  ClipboardList,
+  Wallet,
+  ShieldAlert,
+  Lock,
+  DoorOpen,
+  Crown,
+  Trophy,
+  Sparkles,
+  Star,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import useAuthStore from '../../store/authStore'
@@ -459,6 +472,123 @@ function UpcomingActivitiesWidget() {
   )
 }
 
+function AnnouncementsBar() {
+  const announcements = [
+    { title: 'Registration Deadline Extended', date: 'Jun 10, 2026', type: 'info' },
+    { title: 'Sports Week: Register Now!', date: 'Jun 15-20, 2026', type: 'event' },
+    { title: 'Library Hours Updated', date: 'Jun 5, 2026', type: 'info' },
+  ]
+
+  return (
+    <Card className="overflow-hidden">
+      <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide py-2 px-4">
+        <div className="shrink-0 flex items-center gap-2 text-primary dark:text-accent">
+          <Megaphone size={18} />
+          <span className="text-xs font-semibold uppercase tracking-wider">Announcements</span>
+        </div>
+        <div className="flex gap-4 flex-1 min-w-0">
+          {announcements.map((a, idx) => (
+            <div
+              key={idx}
+              className="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-md bg-surface dark:bg-primary-dark/50 text-sm text-text dark:text-text-dark whitespace-nowrap"
+            >
+              <span className={`w-1.5 h-1.5 rounded-full ${a.type === 'event' ? 'bg-warning' : 'bg-primary'}`} />
+              <span className="font-medium">{a.title}</span>
+              <span className="text-xs text-muted">{a.date}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Card>
+  )
+}
+
+function SchoolAdminWidget() {
+  const adminStaff = [
+    { name: 'Prof. Nkeng George', role: 'CEO / Chancellor', icon: 'Shield' },
+    { name: 'Dr. Ambassa Antoine', role: 'Vice Chancellor', icon: 'UserCheck' },
+    { name: 'Dr. Ngoe Martin', role: 'Director of Studies', icon: 'BookOpen' },
+    { name: 'Mme. Eyanga Cécile', role: 'Registrar', icon: 'ClipboardList' },
+    { name: 'M. Mbarga Jean', role: 'Bursar / Finance Director', icon: 'Wallet' },
+    { name: 'M. Bello Ahmadou', role: 'Head of Discipline', icon: 'ShieldAlert' },
+    { name: 'M. Tchinda Paul', role: 'Head of Security', icon: 'Lock' },
+    { name: 'M. Njike Samuel', role: 'Gate Man / Security', icon: 'DoorOpen' },
+  ]
+
+  const iconMap = { Shield, UserCheck, BookOpen, ClipboardList, Wallet, ShieldAlert, Lock, DoorOpen }
+
+  return (
+    <Card className="h-full">
+      <div className="flex items-center gap-2 mb-4">
+        <Shield size={18} className="text-primary dark:text-accent" />
+        <h3 className="font-display font-semibold text-text dark:text-text-dark">School Administration</h3>
+      </div>
+      <div className="space-y-1">
+        {adminStaff.map((member, idx) => {
+          const Icon = iconMap[member.icon]
+          return (
+            <div
+              key={idx}
+              className="flex items-center gap-3 p-2.5 rounded-lg bg-surface dark:bg-primary-dark/50 hover:bg-border/30 dark:hover:bg-border-dark/20 transition-colors"
+            >
+              <div className="shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent">
+                {Icon && <Icon size={15} />}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium text-text dark:text-text-dark truncate">{member.name}</p>
+                <p className="text-xs text-muted truncate">{member.role}</p>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </Card>
+  )
+}
+
+function SugMembersWidget() {
+  const sugMembers = [
+    { name: 'Achille Ndebi', role: 'President', icon: 'Crown' },
+    { name: 'Chris Brandon', role: 'Communication Delegate', icon: 'Megaphone' },
+    { name: 'Marie Claire', role: 'Vice President', icon: 'UserCheck' },
+    { name: 'Jean Paul', role: 'Secretary General', icon: 'FileText' },
+    { name: 'Esther Ngo', role: 'Treasurer', icon: 'Wallet' },
+    { name: 'Pierre Kamga', role: 'Sports & Culture', icon: 'Trophy' },
+    { name: 'Alice Ngon', role: 'Miss Campus', icon: 'Sparkles' },
+    { name: 'Marc Tchinda', role: 'Mister Campus', icon: 'Star' },
+  ]
+
+  const iconMap = { Crown, Megaphone, UserCheck, FileText, Wallet, Trophy, Sparkles, Star }
+
+  return (
+    <Card className="h-full">
+      <div className="flex items-center gap-2 mb-4">
+        <Crown size={18} className="text-primary dark:text-accent" />
+        <h3 className="font-display font-semibold text-text dark:text-text-dark">SUG Members</h3>
+      </div>
+      <div className="space-y-1">
+        {sugMembers.map((member, idx) => {
+          const Icon = iconMap[member.icon]
+          return (
+            <div
+              key={idx}
+              className="flex items-center gap-3 p-2.5 rounded-lg bg-surface dark:bg-primary-dark/50 hover:bg-border/30 dark:hover:bg-border-dark/20 transition-colors"
+            >
+              <div className="shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-warning/10 text-warning">
+                {Icon && <Icon size={15} />}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium text-text dark:text-text-dark truncate">{member.name}</p>
+                <p className="text-xs text-muted truncate">{member.role}</p>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </Card>
+  )
+}
+
 export default function Dashboard() {
   const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
@@ -472,7 +602,7 @@ export default function Dashboard() {
         className="mb-6"
       >
         <h1 className="text-xl lg:text-2xl font-display font-bold text-text dark:text-text-dark">
-          {t('dashboard.welcome')}, {user?.firstName || 'User'} 👋
+          {t('dashboard.welcome')}, {user?.firstName || 'User'} <Sun className="inline-block" />
         </h1>
         <p className="text-sm text-muted mt-1">
           {new Date().toLocaleDateString(undefined, {
@@ -490,6 +620,10 @@ export default function Dashboard() {
         animate="visible"
         className="space-y-6"
       >
+        <motion.div variants={itemVariants}>
+          <AnnouncementsBar />
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <motion.div variants={itemVariants} className="md:col-span-1">
             <ScheduleWidget />
@@ -508,6 +642,15 @@ export default function Dashboard() {
           </motion.div>
           <motion.div variants={itemVariants}>
             <QuickActionsWidget />
+          </motion.div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <motion.div variants={itemVariants}>
+            <SchoolAdminWidget />
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <SugMembersWidget />
           </motion.div>
         </div>
 

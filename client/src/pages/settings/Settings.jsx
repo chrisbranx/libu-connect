@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import {
   User, Shield, Palette, Bell, Lock, GraduationCap, Database,
   Camera, Save, Eye, EyeOff, Check, X, Download, Trash2,
-  AlertTriangle, Moon, Sun,
+  AlertTriangle, Moon, Sun, Languages, Globe,
 } from 'lucide-react'
 import useAuthStore from '../../store/authStore'
 import useThemeStore from '../../store/themeStore'
@@ -370,9 +370,17 @@ function AccountSection() {
   )
 }
 
+const colorThemes = [
+  { id: 'indigo', name: 'Indigo', primary: '#4F46E5', bg: '#EEF2FF' },
+  { id: 'emerald', name: 'Emerald', primary: '#059669', bg: '#ECFDF5' },
+  { id: 'violet', name: 'Violet', primary: '#7C3AED', bg: '#F5F3FF' },
+  { id: 'rose', name: 'Rose', primary: '#E11D48', bg: '#FFF1F2' },
+  { id: 'amber', name: 'Amber', primary: '#D97706', bg: '#FFFBEB' },
+]
+
 function AppearanceSection() {
   const { t, i18n } = useTranslation()
-  const { darkMode, toggleDarkMode, setLanguage } = useThemeStore()
+  const { darkMode, toggleDarkMode, setLanguage, themeColor, setThemeColor } = useThemeStore()
   const [changing, setChanging] = useState(false)
 
   const handleLanguageChange = async (lang) => {
@@ -403,6 +411,28 @@ function AppearanceSection() {
       </Card>
 
       <Card>
+        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-4">Color Theme</h3>
+        <div className="flex flex-wrap gap-3">
+          {colorThemes.map((theme) => (
+            <button
+              key={theme.id}
+              type="button"
+              onClick={() => setThemeColor(theme.primary)}
+              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                themeColor === theme.primary
+                  ? 'ring-2 ring-offset-2 ring-primary dark:ring-offset-primary-dark scale-110'
+                  : 'hover:scale-110'
+              }`}
+              style={{ backgroundColor: theme.primary }}
+              title={theme.name}
+            >
+              {themeColor === theme.primary && <Check size={16} className="text-white" />}
+            </button>
+          ))}
+        </div>
+      </Card>
+
+      <Card>
         <h3 className="text-base font-semibold text-text dark:text-text-dark mb-4">{t('settings.language')}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <button
@@ -415,7 +445,7 @@ function AppearanceSection() {
                 : 'border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-accent/30'
             }`}
           >
-            <span className="text-2xl">🇬🇧</span>
+            <Languages className="text-2xl" />
             <div className="text-left">
               <p className="text-sm font-semibold text-text dark:text-text-dark">{t('settings.english')}</p>
               <p className="text-xs text-muted">English</p>
@@ -436,7 +466,7 @@ function AppearanceSection() {
                 : 'border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-accent/30'
             }`}
           >
-            <span className="text-2xl">🇫🇷</span>
+            <Globe className="text-2xl" />
             <div className="text-left">
               <p className="text-sm font-semibold text-text dark:text-text-dark">{t('settings.french')}</p>
               <p className="text-xs text-muted">Français</p>

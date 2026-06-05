@@ -24,19 +24,23 @@
 }
 
 .dark {
-  --color-surface: #0F0E1A;
-  --color-border: #2A2840;
-  --color-text: #F0EFF8;
+  --color-primary: #6C63FF;
+  --color-surface: #1A1A2E;
+  --color-border: #2D2B45;
+  --color-text: #E8E6F0;
   --color-muted: #9896B0;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
 
 body {
   font-family: 'Satoshi', 'DM Sans', sans-serif;
   background-color: var(--color-surface);
   color: var(--color-text);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.4s ease, color 0.4s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

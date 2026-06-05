@@ -3,8 +3,10 @@ const { calculateGrade, calculateGradePoints, calculateGPA, calculateCameroonian
 
 async function getGrades(req, res) {
   try {
-    const userId = req.user.id;
-    const { semester, year } = req.query;
+    const { semester, year, userId: queryUserId } = req.query;
+    const userId = (req.user.role === 'ADMIN' || req.user.role === 'LECTURER') && queryUserId
+      ? queryUserId
+      : req.user.id;
 
     const where = { userId };
     if (semester) where.semester = semester;
@@ -103,7 +105,10 @@ async function getSemesters(req, res) {
 
 async function createGrade(req, res) {
   try {
-    const { course, courseCode, credits, score, semester, year } = req.body;
+    const { course, courseCode, credits, score, semester, year, userId: bodyUserId } = req.body;
+    const userId = (req.user.role === 'ADMIN' || req.user.role === 'LECTURER') && bodyUserId
+      ? bodyUserId
+      : req.user.id;
 
     if (!course || credits === undefined || score === undefined || !semester || !year) {
       return res.status(400).json({ error: 'course, credits, score, semester, and year are required' });
@@ -117,7 +122,7 @@ async function createGrade(req, res) {
 
     const entry = await prisma.grade.create({
       data: {
-        userId: req.user.id,
+        userId,
         course,
         courseCode,
         credits: parseFloat(credits),

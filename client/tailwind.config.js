@@ -4,14 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: '#1E1B4B', light: '#312E81', dark: '#0F0E1A' },
+        primary: { DEFAULT: '#1E1B4B', light: '#312E81', dark: '#6C63FF' },
+        'primary-dark': '#6C63FF',
         accent: { DEFAULT: '#F59E0B', light: '#FCD34D' },
         success: '#059669',
         danger: '#DC2626',
         warning: '#D97706',
-        surface: { DEFAULT: '#F8F7FF', dark: '#0F0E1A' },
-        border: { DEFAULT: '#E5E4F0', dark: '#2A2840' },
-        text: { DEFAULT: '#1F1D35', muted: '#6B6880', dark: '#F0EFF8' },
+        surface: { DEFAULT: '#F8F7FF', dark: '#1A1A2E' },
+        'surface-dark': '#1A1A2E',
+        border: { DEFAULT: '#E5E4F0', dark: '#2D2B45' },
+        'border-dark': '#2D2B45',
+        text: { DEFAULT: '#1F1D35', muted: '#6B6880', dark: '#E8E6F0' },
+        'text-dark': '#E8E6F0',
+        'bg-dark': '#0F0F1A',
       },
       fontFamily: {
         display: ['"Clash Display"', 'sans-serif'],

@@ -4,6 +4,7 @@ import { api } from '../services/api';
 const useThemeStore = create((set) => ({
   darkMode: localStorage.getItem('darkMode') === 'true',
   language: localStorage.getItem('language') || 'en',
+  themeColor: localStorage.getItem('themeColor') || 'indigo',
 
   toggleDarkMode: () => set((state) => {
     const newMode = !state.darkMode;
@@ -18,11 +19,19 @@ const useThemeStore = create((set) => ({
     set({ language: lang });
   },
 
+  setThemeColor: (color) => {
+    localStorage.setItem('themeColor', color);
+    document.documentElement.style.setProperty('--color-primary', color);
+    set({ themeColor: color });
+  },
+
   initTheme: () => {
     const dark = localStorage.getItem('darkMode') === 'true';
     const lang = localStorage.getItem('language') || 'en';
+    const color = localStorage.getItem('themeColor') || 'indigo';
     if (dark) document.documentElement.classList.add('dark');
-    set({ darkMode: dark, language: lang });
+    document.documentElement.style.setProperty('--color-primary', color);
+    set({ darkMode: dark, language: lang, themeColor: color });
   },
 }));
 
