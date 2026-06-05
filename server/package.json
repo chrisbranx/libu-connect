@@ -9,9 +9,12 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
+    "build": "npx prisma generate",
     "migrate": "npx prisma migrate dev",
+    "migrate:deploy": "npx prisma migrate deploy",
     "seed": "node prisma/seed.js",
-    "studio": "npx prisma studio"
+    "studio": "npx prisma studio",
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.20.0",
