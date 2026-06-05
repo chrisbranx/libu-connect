@@ -371,7 +371,7 @@ function AccountSection() {
 }
 
 const colorThemes = [
-  { id: 'indigo', name: 'Indigo', primary: '#4F46E5', bg: '#EEF2FF' },
+  { id: 'default', name: 'Default', primary: '#2563EB', bg: '#EFF6FF' },
   { id: 'emerald', name: 'Emerald', primary: '#059669', bg: '#ECFDF5' },
   { id: 'violet', name: 'Violet', primary: '#7C3AED', bg: '#F5F3FF' },
   { id: 'rose', name: 'Rose', primary: '#E11D48', bg: '#FFF1F2' },
@@ -417,16 +417,16 @@ function AppearanceSection() {
             <button
               key={theme.id}
               type="button"
-              onClick={() => setThemeColor(theme.primary)}
+              onClick={() => setThemeColor(theme.id)}
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-                themeColor === theme.primary
+                themeColor === theme.id
                   ? 'ring-2 ring-offset-2 ring-primary dark:ring-offset-primary-dark scale-110'
                   : 'hover:scale-110'
               }`}
               style={{ backgroundColor: theme.primary }}
               title={theme.name}
             >
-              {themeColor === theme.primary && <Check size={16} className="text-white" />}
+              {themeColor === theme.id && <Check size={16} className="text-white" />}
             </button>
           ))}
         </div>
