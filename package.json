@@ -1,6 +1,6 @@
 {
-  "name": "libu-connect-api",
-  "version": "1.0.0",
+  "name": "libu-connect",
+  "private": true,
   "dependencies": {
     "@prisma/client": "^5.10.0",
     "bcryptjs": "^2.4.3",
@@ -19,7 +19,10 @@
   "devDependencies": {
     "prisma": "^5.10.0"
   },
+  "prisma": {
+    "schema": "server/prisma/schema.prisma"
+  },
   "scripts": {
-    "postinstall": "npx prisma generate --schema=../server/prisma/schema.prisma"
+    "postinstall": "npx prisma generate"
   }
 }
